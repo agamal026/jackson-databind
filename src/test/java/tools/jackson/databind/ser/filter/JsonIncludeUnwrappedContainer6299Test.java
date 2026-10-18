@@ -237,6 +237,7 @@ class JsonIncludeUnwrappedContainer6299Test extends DatabindTestUtil
         String actual = writer.writeValueAsString(bean);
         assertEquals(expected, actual);
         assertEquals(mapper.readTree(expected), mapper.readTree(actual));
-        assertEquals(mapper.readTree(expected), writer.valueToTree(bean));
+        // Tree conversion preserves Java numeric types, unlike parsing JSON numbers.
+        assertEquals(expected, writer.valueToTree(bean).toString());
     }
 }
