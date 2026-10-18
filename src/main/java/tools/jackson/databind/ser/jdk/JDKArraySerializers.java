@@ -176,6 +176,12 @@ public class JDKArraySerializers
         {
             final int len = value.length;
             if ((len == 1) && _shouldUnwrapSingle(ctxt)) {
+                // [databind#6299]: a filtered singleton still needs a JSON value.
+                if (_needToCheckFiltering(ctxt) && isEmpty(ctxt, value)) {
+                    g.writeStartArray(value, 0);
+                    g.writeEndArray();
+                    return;
+                }
                 serializeContents(value, g, ctxt);
                 return;
             }
@@ -265,6 +271,12 @@ public class JDKArraySerializers
         {
             final int len = value.length;
             if ((len == 1) && _shouldUnwrapSingle(ctxt)) {
+                // [databind#6299]: a filtered singleton still needs a JSON value.
+                if (_needToCheckFiltering(ctxt) && isEmpty(ctxt, value)) {
+                    g.writeStartArray(value, 0);
+                    g.writeEndArray();
+                    return;
+                }
                 serializeContents(value, g, ctxt);
                 return;
             }
@@ -430,6 +442,12 @@ public class JDKArraySerializers
         {
             final int len = value.length;
             if ((len == 1) && _shouldUnwrapSingle(ctxt)) {
+                // [databind#6299]: a filtered singleton still needs a JSON value.
+                if (_needToCheckFiltering(ctxt) && isEmpty(ctxt, value)) {
+                    g.writeStartArray(value, 0);
+                    g.writeEndArray();
+                    return;
+                }
                 serializeContents(value, g, ctxt);
                 return;
             }
@@ -525,6 +543,12 @@ public class JDKArraySerializers
         {
             final int len = value.length;
             if ((len == 1) && _shouldUnwrapSingle(ctxt)) {
+                // [databind#6299]: a filtered singleton still needs a JSON value.
+                if (_needToCheckFiltering(ctxt) && isEmpty(ctxt, value)) {
+                    g.writeStartArray(value, 0);
+                    g.writeEndArray();
+                    return;
+                }
                 serializeContents(value, g, ctxt);
                 return;
             }
@@ -638,6 +662,12 @@ public class JDKArraySerializers
         {
             final int len = value.length;
             if ((len == 1) && _shouldUnwrapSingle(ctxt)) {
+                // [databind#6299]: a filtered singleton still needs a JSON value.
+                if (_needToCheckFiltering(ctxt) && isEmpty(ctxt, value)) {
+                    g.writeStartArray(value, 0);
+                    g.writeEndArray();
+                    return;
+                }
                 serializeContents(value, g, ctxt);
                 return;
             }
@@ -754,6 +784,12 @@ public class JDKArraySerializers
         {
             final int len = value.length;
             if ((len == 1) && _shouldUnwrapSingle(ctxt)) {
+                // [databind#6299]: a filtered singleton still needs a JSON value.
+                if (_needToCheckFiltering(ctxt) && isEmpty(ctxt, value)) {
+                    g.writeStartArray(value, 0);
+                    g.writeEndArray();
+                    return;
+                }
                 serializeContents(value, g, ctxt);
                 return;
             }
