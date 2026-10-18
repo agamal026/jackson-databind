@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import tools.jackson.core.JsonGenerator;
 import tools.jackson.core.type.TypeReference;
+import tools.jackson.databind.DatabindException;
 import tools.jackson.databind.ObjectMapper;
 import tools.jackson.databind.ObjectWriter;
 import tools.jackson.databind.SerializationContext;
@@ -24,6 +25,7 @@ import tools.jackson.databind.ser.std.StdSerializer;
 import tools.jackson.databind.testutil.DatabindTestUtil;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class JsonIncludeUnwrappedContainer6299Test extends DatabindTestUtil
 {
@@ -101,6 +103,36 @@ class JsonIncludeUnwrappedContainer6299Test extends DatabindTestUtil
     static class ItemSerializerMixin {
         @JsonSerialize(contentUsing = ItemSerializer.class)
         public Object values;
+    }
+
+    static class ThrowingFilter {
+        @Override
+        public boolean equals(Object other) {
+            if (other == null) {
+                return false;
+            }
+            throw new IllegalStateException("broken content filter");
+        }
+
+        @Override
+        public int hashCode() {
+            return 0;
+        }
+    }
+
+    static Stream<Arguments> exceptionContainers() {
+        return Stream.of(
+            Arguments.of("indexed strings", new TypeReference<List<String>>() { },
+                    List.of("keep")),
+            Arguments.of("string set", new TypeReference<Set<String>>() { },
+                    new LinkedHashSet<>(List.of("keep"))),
+            Arguments.of("indexed objects", new TypeReference<List<Object>>() { },
+                    new ArrayList<>(List.of("keep"))),
+            Arguments.of("object set", new TypeReference<Set<Object>>() { },
+                    new LinkedHashSet<>(List.of("keep"))),
+            Arguments.of("object array", new TypeReference<Object[]>() { },
+                    new Object[]{"keep"})
+        );
     }
 
     static Stream<Arguments> containers() {
@@ -219,6 +251,21 @@ class JsonIncludeUnwrappedContainer6299Test extends DatabindTestUtil
         TypeReference<Bean<List<Item>>> type = new TypeReference<>() { };
         _assertValues(mapper, type, List.of(new Item("skip")), "[]");
         _assertValues(mapper, type, List.of(new Item("keep")), "\"keep\"");
+    }
+
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("exceptionContainers")
+    void contentFilterException(String description, TypeReference<?> type, Object value) {
+        ObjectMapper mapper = _mapper(JsonInclude.Value.construct(
+                JsonInclude.Include.ALWAYS, JsonInclude.Include.CUSTOM)
+                .withContentFilter(ThrowingFilter.class));
+        ObjectWriter writer = mapper.writerFor(type).with(SerializationFeature.WRAP_EXCEPTIONS);
+        DatabindException exception = assertThrows(DatabindException.class,
+                () -> writer.writeValueAsString(value));
+        assertEquals(0, exception.getPath().get(0).getIndex());
+        assertEquals(IllegalStateException.class, exception.getCause().getClass());
+        ObjectWriter unwrapped = writer.without(SerializationFeature.WRAP_EXCEPTIONS);
+        assertThrows(IllegalStateException.class, () -> unwrapped.writeValueAsString(value));
     }
 
     private ObjectMapper _mapper(JsonInclude.Value inclusion) {
