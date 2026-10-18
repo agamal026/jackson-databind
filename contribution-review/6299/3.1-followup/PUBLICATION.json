@@ -1,0 +1,181 @@
+{
+  "schema_version": 1,
+  "status": "ready_for_root_publication",
+  "prepared_at_utc": "2026-10-18T14:56:24.100841+00:00",
+  "source_commit": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45",
+  "source_tree": "861d2292ae59d0c91fd3b572cd044212e2580c00",
+  "validation_run": "https://github.com/agamal026/jackson-databind/actions/runs/39137464915",
+  "direct_publication_paths": [
+    "README.md",
+    "VALIDATION.json",
+    "SOURCE-IDENTITIES.json",
+    "JACKSON-6299-3.1-SOURCE-REVIEW.md",
+    "JACKSON-6299-BRANCH-REVIEW.md",
+    "JACKSON-6299-HELPER-DESIGN-REVIEW.md",
+    "JACKSON-6299-ENTRY-COUNT-REVIEW.md",
+    "JACKSON-6299-API-CORRECTION-REVIEW-PUBLIC.md",
+    "jackson-6299-3.1-compatibility-fixture-review.md",
+    "source.patch",
+    "api-correction.patch",
+    "fixture-correction.patch",
+    "SHA256SUMS",
+    "jackson-6299-3.1-followup-evidence.tar.gz",
+    "jackson-6299-3.1-followup-evidence.tar.gz.sha256",
+    "PUBLICATION.json"
+  ],
+  "direct_public_files": [
+    {
+      "path": "README.md",
+      "bytes": 18748,
+      "sha256": "8b2231e9c19c1be5e41d7344663dd94b822980f67af3c2a5149d5cc5a343b9a1"
+    },
+    {
+      "path": "VALIDATION.json",
+      "bytes": 32996,
+      "sha256": "c93c3d7388aac7ead6394e111af093ff8f705ef72829c554d3ecc8164fc3a65f"
+    },
+    {
+      "path": "SOURCE-IDENTITIES.json",
+      "bytes": 17301,
+      "sha256": "4966002cc7e975619e05a7034e3983245132cd6217a9c0d5867f9960fb77c394"
+    },
+    {
+      "path": "JACKSON-6299-3.1-SOURCE-REVIEW.md",
+      "bytes": 14874,
+      "sha256": "5ad0a8f8be1c1eadb7501c5de3c46f04f56f704a50caebf8bbd48f973f836339"
+    },
+    {
+      "path": "JACKSON-6299-BRANCH-REVIEW.md",
+      "bytes": 25076,
+      "sha256": "aeeefba2a6ded8e562ebf7facc0fae52af8029abe105a620262f311c34d17f31"
+    },
+    {
+      "path": "JACKSON-6299-HELPER-DESIGN-REVIEW.md",
+      "bytes": 9598,
+      "sha256": "903e4f967e01ac639e7b5723cd222ed43d51daed5d7bcf849e2fea72c57a4ddc"
+    },
+    {
+      "path": "JACKSON-6299-ENTRY-COUNT-REVIEW.md",
+      "bytes": 11244,
+      "sha256": "2ad19eabcbd5231b6b5d63f3a456caf1a190ecee27965184bae75d2f9dc070df"
+    },
+    {
+      "path": "JACKSON-6299-API-CORRECTION-REVIEW-PUBLIC.md",
+      "bytes": 3867,
+      "sha256": "bbba8dae1950fa37172f2c80b6bb18b02a643efab0bcf7a530a6717108cb49b6"
+    },
+    {
+      "path": "jackson-6299-3.1-compatibility-fixture-review.md",
+      "bytes": 4225,
+      "sha256": "969f2e18b6e45d04e7ec42444d05bf31d91db7cd2f441be30e8724d196e0a214"
+    },
+    {
+      "path": "source.patch",
+      "bytes": 46395,
+      "sha256": "3d06aa3a420344a18b0dc2d3b6b46b363e658c04c33dd84113cf56d44a3ff903"
+    },
+    {
+      "path": "api-correction.patch",
+      "bytes": 1181,
+      "sha256": "b691334398f76d94328050ff0c9dad1853262a023bf80a616476c04de97a9c6c"
+    },
+    {
+      "path": "fixture-correction.patch",
+      "bytes": 4273,
+      "sha256": "7c1a91a7cef806433216a077175685d0561e3fe911056b96ea7250288b723f9b"
+    },
+    {
+      "path": "SHA256SUMS",
+      "bytes": 5831,
+      "sha256": "e51be43cd7c1455f342b1e7efadcf992551a71b3cb190972aed272019d51e8f8"
+    },
+    {
+      "path": "jackson-6299-3.1-followup-evidence.tar.gz",
+      "bytes": 597940,
+      "sha256": "7d6924376c82ccb8482b2fdb4d59e3cac2190545c8a08a3439c643c7eb74d7a4"
+    },
+    {
+      "path": "jackson-6299-3.1-followup-evidence.tar.gz.sha256",
+      "bytes": 108,
+      "sha256": "7c5f84287365892889f7f86d955efd4483aa82ca9f0d0a86e39de118c9a669f5"
+    }
+  ],
+  "self_file": {
+    "path": "PUBLICATION.json",
+    "sha256": "Supplied separately in the handoff; excluded here and from the archive to avoid a recursive hash."
+  },
+  "archive": {
+    "path": "jackson-6299-3.1-followup-evidence.tar.gz",
+    "bytes": 597940,
+    "sha256": "7d6924376c82ccb8482b2fdb4d59e3cac2190545c8a08a3439c643c7eb74d7a4",
+    "payload_files": 55,
+    "archive_entries_including_payload_manifest": 56,
+    "payload_bytes_including_manifest": 5254613,
+    "decoded_hosted_job_logs": 16,
+    "includes_baseline_and_both_failed_attempts": true,
+    "includes_final_success_audit": true
+  },
+  "archive_only_paths": [
+    "JACKSON-6299-API-CORRECTION-REVIEW.md",
+    "baseline-hosted/audit.json",
+    "baseline-hosted/job-117697828976.log",
+    "baseline-hosted/job-117697829071.log",
+    "baseline-hosted/job-117697829145.log",
+    "baseline-hosted/job-117697829198.log",
+    "baseline-hosted/jobs.json",
+    "baseline-hosted/run.json",
+    "baseline-hosted/source-identities.json",
+    "final-hosted/attempt-382616/audit.json",
+    "final-hosted/attempt-382616/checks.json",
+    "final-hosted/attempt-382616/job-117704796544.log",
+    "final-hosted/attempt-382616/job-117704796668.log",
+    "final-hosted/attempt-382616/job-117704796669.log",
+    "final-hosted/attempt-382616/job-117704796724.log",
+    "final-hosted/attempt-382616/jobs.json",
+    "final-hosted/attempt-382616/observations.json",
+    "final-hosted/attempt-382616/run.json",
+    "final-hosted/attempt-382616/source-identities.json",
+    "final-hosted/attempt-60218d/audit.json",
+    "final-hosted/attempt-60218d/checks.json",
+    "final-hosted/attempt-60218d/job-117702456669.log",
+    "final-hosted/attempt-60218d/job-117702456803.log",
+    "final-hosted/attempt-60218d/job-117702456813.log",
+    "final-hosted/attempt-60218d/job-117702456822.log",
+    "final-hosted/attempt-60218d/jobs.json",
+    "final-hosted/attempt-60218d/observations.json",
+    "final-hosted/attempt-60218d/run.json",
+    "final-hosted/attempt-60218d/source-identities.json",
+    "final-hosted/attempt-60218d/source.patch",
+    "final-hosted/attempt-c2366f-failure/audit.json",
+    "final-hosted/attempt-c2366f-failure/checks.json",
+    "final-hosted/attempt-c2366f-failure/job-117700937336.log",
+    "final-hosted/attempt-c2366f-failure/job-117700937573.log",
+    "final-hosted/attempt-c2366f-failure/job-117700937577.log",
+    "final-hosted/attempt-c2366f-failure/job-117700937754.log",
+    "final-hosted/attempt-c2366f-failure/jobs.json",
+    "final-hosted/attempt-c2366f-failure/runs.json",
+    "final-hosted/attempt-c2366f-failure/source-identities.json",
+    "final-hosted/attempt-c2366f-failure/source.patch",
+    "local-baseline/attempt.json",
+    "local-baseline/baseline-focused.log",
+    "local-baseline/baseline-prepared.json"
+  ],
+  "verification": {
+    "all_input_audit_manifests_verified": true,
+    "source_blob_count": 12,
+    "all_published_relative_markdown_links_resolve_to_allowlist": true,
+    "all_archived_payload_bytes_equal_local_sources": true,
+    "payload_manifest_requires_archive_extraction": true,
+    "original_review_files_preserved": true,
+    "original_api_review_preserved_in_archive": true,
+    "public_api_review_is_labeled_publication_copy": true
+  },
+  "limitations": {
+    "human_review": false,
+    "test_execution_by_source_or_packet_reviewer": false,
+    "remote_publication_performed_by_packet_assembler": false,
+    "upstream_acceptance_established": false,
+    "cla_status": "unverified",
+    "earnings_established": false
+  }
+}

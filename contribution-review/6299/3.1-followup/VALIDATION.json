@@ -1,0 +1,859 @@
+{
+  "schema_version": 1,
+  "subject": "Jackson databind #6299: 3.1 follow-up",
+  "assembled_at_utc": "2026-10-18T14:56:24.100841+00:00",
+  "status": "final_owned_fork_validation_passed",
+  "issue_url": "https://github.com/FasterXML/jackson-databind/issues/6299",
+  "existing_upstream_pr_url": "https://github.com/FasterXML/jackson-databind/pull/6302",
+  "owned_validation_pr_url": "https://github.com/agamal026/jackson-databind/pull/2",
+  "source": {
+    "base": "5d64697ef018099e3d5f951668752ec9d4ffabf9",
+    "test_only_baseline": "4a47e457e7bf8e877bb837693eab58fdc256c22c",
+    "first_implementation": "c2366f76b7a3e1a2c707acb4e25df2e1cd3a6a00",
+    "corrected_source": "60218d2e760de528fdc48748c8a844a34f3755c8",
+    "corrected_source_tree": "2eeb7de459109da30ccea323373d1f6c47ceba71",
+    "manifest": "SOURCE-IDENTITIES.json",
+    "patch": "source.patch",
+    "final_candidate": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45",
+    "final_candidate_tree": "861d2292ae59d0c91fd3b572cd044212e2580c00",
+    "patch_target": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45"
+  },
+  "baseline": {
+    "audit": "baseline-hosted/audit.json",
+    "audit_sha256": "28ca1e78fc990dce208e76a4a3a095ec90d09f6ebbffd55834e469801d3cc541",
+    "run_id": 39135075480,
+    "run_url": "https://github.com/agamal026/jackson-databind/actions/runs/39135075480",
+    "status": "completed",
+    "conclusion": "failure",
+    "actual_checkout_merge": "70e4328406ddbfc2c09e516c80a0e39b725c2789",
+    "source_and_merge_tree": "401a300365df0c4d5e501da374c55d14fc984875",
+    "production_changes": false,
+    "result": "Confirmed failure reproduction on all four hosted build jobs. Only the added regression class contributes failures or errors; all class-summary totals reconcile with the final aggregate.",
+    "build_jobs": [
+      {
+        "job_id": 117697828976,
+        "name": "build (17, ubuntu-24.04)",
+        "url": "https://github.com/agamal026/jackson-databind/actions/runs/39135075480/job/117697828976",
+        "status": "completed",
+        "conclusion": "failure",
+        "java": "17.0.20+1",
+        "regression_class": {
+          "tests": 53,
+          "failures": 1,
+          "errors": 32,
+          "skips": 0,
+          "class": "tools.jackson.databind.ser.filter.JsonIncludeUnwrappedContainer6299Test",
+          "passed": 20
+        },
+        "full_suite": {
+          "tests": 5862,
+          "failures": 1,
+          "errors": 32,
+          "skips": 1,
+          "passed": 5828
+        },
+        "only_added_regression_class_failed": true,
+        "android_step": {
+          "name": "Verify Android SDK Compatibility",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8,
+          "started_at": "2026-10-18T14:15:51Z",
+          "completed_at": "2026-10-18T14:15:51Z"
+        }
+      },
+      {
+        "job_id": 117697829071,
+        "name": "build (17, windows-latest, W)",
+        "url": "https://github.com/agamal026/jackson-databind/actions/runs/39135075480/job/117697829071",
+        "status": "completed",
+        "conclusion": "failure",
+        "java": "17.0.20+101",
+        "regression_class": {
+          "tests": 53,
+          "failures": 1,
+          "errors": 32,
+          "skips": 0,
+          "class": "tools.jackson.databind.ser.filter.JsonIncludeUnwrappedContainer6299Test",
+          "passed": 20
+        },
+        "full_suite": {
+          "tests": 5862,
+          "failures": 1,
+          "errors": 32,
+          "skips": 1,
+          "passed": 5828
+        },
+        "only_added_regression_class_failed": true,
+        "android_step": {
+          "name": "Verify Android SDK Compatibility",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 7,
+          "started_at": "2026-10-18T14:16:45Z",
+          "completed_at": "2026-10-18T14:16:45Z"
+        }
+      },
+      {
+        "job_id": 117697829145,
+        "name": "build (25, ubuntu-24.04)",
+        "url": "https://github.com/agamal026/jackson-databind/actions/runs/39135075480/job/117697829145",
+        "status": "completed",
+        "conclusion": "failure",
+        "java": "25.0.4+1",
+        "regression_class": {
+          "tests": 53,
+          "failures": 1,
+          "errors": 32,
+          "skips": 0,
+          "class": "tools.jackson.databind.ser.filter.JsonIncludeUnwrappedContainer6299Test",
+          "passed": 20
+        },
+        "full_suite": {
+          "tests": 5864,
+          "failures": 1,
+          "errors": 32,
+          "skips": 1,
+          "passed": 5830
+        },
+        "only_added_regression_class_failed": true,
+        "android_step": {
+          "name": "Verify Android SDK Compatibility",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8,
+          "started_at": "2026-10-18T14:15:59Z",
+          "completed_at": "2026-10-18T14:15:59Z"
+        }
+      },
+      {
+        "job_id": 117697829198,
+        "name": "build (21, ubuntu-24.04)",
+        "url": "https://github.com/agamal026/jackson-databind/actions/runs/39135075480/job/117697829198",
+        "status": "completed",
+        "conclusion": "failure",
+        "java": "21.0.12+1",
+        "regression_class": {
+          "tests": 53,
+          "failures": 1,
+          "errors": 32,
+          "skips": 0,
+          "class": "tools.jackson.databind.ser.filter.JsonIncludeUnwrappedContainer6299Test",
+          "passed": 20
+        },
+        "full_suite": {
+          "tests": 5864,
+          "failures": 1,
+          "errors": 32,
+          "skips": 1,
+          "passed": 5830
+        },
+        "only_added_regression_class_failed": true,
+        "android_step": {
+          "name": "Verify Android SDK Compatibility",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8,
+          "started_at": "2026-10-18T14:15:55Z",
+          "completed_at": "2026-10-18T14:15:55Z"
+        }
+      }
+    ],
+    "skipped_nonbuild_jobs": [
+      {
+        "id": 117698417288,
+        "name": "Trigger v3 dep builds",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/agamal026/jackson-databind/actions/runs/39135075480/job/117698417288",
+        "started_at": "2026-10-18T14:16:51Z",
+        "completed_at": "2026-10-18T14:16:50Z"
+      },
+      {
+        "id": 117698417422,
+        "name": "Trigger v2 dep builds",
+        "status": "completed",
+        "conclusion": "skipped",
+        "html_url": "https://github.com/agamal026/jackson-databind/actions/runs/39135075480/job/117698417422",
+        "started_at": "2026-10-18T14:16:51Z",
+        "completed_at": "2026-10-18T14:16:50Z"
+      }
+    ]
+  },
+  "first_implementation_attempt": {
+    "audit": "final-hosted/attempt-c2366f-failure/audit.json",
+    "audit_sha256": "e4575836cad523adf7e727fdd86298989114e371487c485af4e37518a6a4f88f",
+    "run_id": 39136144887,
+    "run_url": "https://github.com/agamal026/jackson-databind/actions/runs/39136144887",
+    "source": "c2366f76b7a3e1a2c707acb4e25df2e1cd3a6a00",
+    "actual_checkout_merge": "0e511dfb7df1044e7b0cc8b21612a9571eeb8dd5",
+    "source_and_merge_tree": "93ddd45b71b193a9305ebe1d87e690998192e054",
+    "status": "completed",
+    "conclusion": "failure",
+    "failure": {
+      "path": "src/test/java/tools/jackson/databind/ser/filter/JsonIncludeUnwrappedContainer6299Test.java",
+      "line": 267,
+      "column": 62,
+      "diagnostic": "cannot find symbol",
+      "missing_symbol": "method getFrom()",
+      "location": "class tools.jackson.core.JacksonException.Reference"
+    },
+    "test_execution": {
+      "tests_ran": false,
+      "observed_test_summary_count": 0,
+      "passing_count": null
+    },
+    "build_jobs": [
+      {
+        "job_id": 117700937336,
+        "name": "build (25, ubuntu-24.04)",
+        "url": "https://github.com/agamal026/jackson-databind/actions/runs/39136144887/job/117700937336",
+        "status": "completed",
+        "conclusion": "failure",
+        "android_step": {
+          "name": "Verify Android SDK Compatibility",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8,
+          "started_at": "2026-10-18T14:29:28Z",
+          "completed_at": "2026-10-18T14:29:28Z"
+        }
+      },
+      {
+        "job_id": 117700937573,
+        "name": "build (17, windows-latest, W)",
+        "url": "https://github.com/agamal026/jackson-databind/actions/runs/39136144887/job/117700937573",
+        "status": "completed",
+        "conclusion": "failure",
+        "android_step": {
+          "name": "Verify Android SDK Compatibility",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 7,
+          "started_at": "2026-10-18T14:30:02Z",
+          "completed_at": "2026-10-18T14:30:02Z"
+        }
+      },
+      {
+        "job_id": 117700937577,
+        "name": "build (17, ubuntu-24.04)",
+        "url": "https://github.com/agamal026/jackson-databind/actions/runs/39136144887/job/117700937577",
+        "status": "completed",
+        "conclusion": "failure",
+        "android_step": {
+          "name": "Verify Android SDK Compatibility",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8,
+          "started_at": "2026-10-18T14:29:26Z",
+          "completed_at": "2026-10-18T14:29:26Z"
+        }
+      },
+      {
+        "job_id": 117700937754,
+        "name": "build (21, ubuntu-24.04)",
+        "url": "https://github.com/agamal026/jackson-databind/actions/runs/39136144887/job/117700937754",
+        "status": "completed",
+        "conclusion": "failure",
+        "android_step": {
+          "name": "Verify Android SDK Compatibility",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8,
+          "started_at": "2026-10-18T14:29:26Z",
+          "completed_at": "2026-10-18T14:29:26Z"
+        }
+      }
+    ]
+  },
+  "local_attempt": {
+    "receipt": "local-baseline/attempt.json",
+    "result": "DNS failure before compilation; not a bug reproduction",
+    "portable_derivative": true
+  },
+  "review": {
+    "type": "Independent automated source review",
+    "human_review": false,
+    "tests_executed_by_source_reviewer": false,
+    "original_review_files": [
+      "JACKSON-6299-3.1-SOURCE-REVIEW.md",
+      "JACKSON-6299-BRANCH-REVIEW.md",
+      "JACKSON-6299-HELPER-DESIGN-REVIEW.md",
+      "JACKSON-6299-ENTRY-COUNT-REVIEW.md"
+    ],
+    "correction_review": "JACKSON-6299-API-CORRECTION-REVIEW.md",
+    "reconciliation": "The original source review missed the unavailable getFrom() test API. Hosted test compilation exposed it; the correction has a separate source binding and does not rewrite the original review. The API-corrected run then executed all 74 new tests and failed two compatibility assertions per job. Historical source reviews remain unchanged; they do not replace these runtime results.",
+    "fixture_correction_review": "jackson-6299-3.1-compatibility-fixture-review.md",
+    "fixture_correction_review_sha256": "969f2e18b6e45d04e7ec42444d05bf31d91db7cd2f441be30e8724d196e0a214",
+    "correction_review_public_copy": "JACKSON-6299-API-CORRECTION-REVIEW-PUBLIC.md",
+    "correction_review_original_archive_path": "JACKSON-6299-API-CORRECTION-REVIEW.md",
+    "correction_review_original_sha256": "8d1f1bb678b728cafd5e54c90a13f2988d0f3ec6c659fbdea1d0d92fad0ae51c",
+    "final_binding": "All twelve exact final blobs are bound by the original source review plus the separately preserved API and compatibility-fixture correction reviews. Source reviews did not execute tests; the final hosted audit supplies execution results."
+  },
+  "provenance": {
+    "hosted_logs": "Connector-returned decoded Unicode text saved as UTF-8; copied byte-for-byte from the audit files with BOM, line endings and replacement characters preserved.",
+    "original_transport_bytes_claimed": false,
+    "hash_scope": "Saved representations only; not original HTTP transport bytes. Git blob hashes and source SHA-256 values describe exact source bytes.",
+    "metadata": "Parsed GitHub JSON saved as formatted JSON; copied without reserialization during packet assembly.",
+    "windows_baseline_decode_note": "The Windows job log already contained 32 U+FFFD replacement characters in the connector-returned decoded text. They were preserved and do not occur in the relevant failing-test summaries.",
+    "local_receipt": "Clearly labeled path-only portable derivatives; originals remain untouched.",
+    "final_windows_log": {
+      "job_id": 117704796544,
+      "crlf_count": 1968,
+      "replacement_characters": 0,
+      "saved_bytes_preserved": true
+    }
+  },
+  "limits": {
+    "maven_runtime_version": null,
+    "maven_runtime_version_note": "Not printed in the observed logs and not inferred from wrapper or executable paths.",
+    "dependency_artifact_hashes_captured": false,
+    "snapshot_dependency_note": "Observed 3.1.9-SNAPSHOT version is not an immutable dependency hash set.",
+    "runtime_performance_measured": false,
+    "property_omission_scope_changed": false,
+    "exactly_once_predicate_guarantee": false,
+    "cla_status": "unverified",
+    "human_signature_or_attestation_performed": false,
+    "upstream_acceptance_established": false,
+    "reward_eligibility_established": false,
+    "earnings_established": false
+  },
+  "original_3x_evidence_retained": "https://github.com/agamal026/jackson-databind/blob/942fb1328e72dd76cf58a32b194d9d3783baad16/contribution-review/6299/README.md",
+  "checksums": {
+    "payload_manifest": "SHA256SUMS",
+    "archive": "jackson-6299-3.1-followup-evidence.tar.gz",
+    "archive_checksum": "jackson-6299-3.1-followup-evidence.tar.gz.sha256",
+    "manifest_excludes": [
+      "SHA256SUMS",
+      "jackson-6299-3.1-followup-evidence.tar.gz",
+      "jackson-6299-3.1-followup-evidence.tar.gz.sha256",
+      "PUBLICATION.json"
+    ]
+  },
+  "api_corrected_attempt": {
+    "source": "60218d2e760de528fdc48748c8a844a34f3755c8",
+    "audit": "final-hosted/attempt-60218d/audit.json",
+    "audit_sha256": "e517ce99ff863bb3d01103752ce81ea68982332970e51129f6f2e45f5731728a",
+    "run_id": 39136668969,
+    "run_url": "https://github.com/agamal026/jackson-databind/actions/runs/39136668969",
+    "actual_checkout_merge": "a0ad81850bb6c85eab28c3fe637f90c796354b99",
+    "source_and_merge_tree": "2eeb7de459109da30ccea323373d1f6c47ceba71",
+    "status": "completed",
+    "conclusion": "failure",
+    "result": "All four builds compile and execute the original 53 tests successfully. The compatibility class executes 21 tests with 2 failures and 19 passes. There are 74 new-class test executions total, 72 pass and 2 fail. No other class fails. Android compatibility is skipped after the Build failures.",
+    "failure_scope": {
+      "class": "tools.jackson.databind.ser.filter.JsonIncludeUnwrappedContainer6299CompatibilityTest",
+      "method": "retainedCustomObjectAndContentType",
+      "cases": [
+        {
+          "invocation": 3,
+          "source_case": "object array",
+          "declared_type": "Bean<Item[]>",
+          "assertion_line": 169,
+          "expected": "{\"values\":[],\"after\":1}",
+          "actual": "{\"values\":{\"kind\":\"item\",\"nested\":{\"text\":\"\"}},\"after\":1}"
+        },
+        {
+          "invocation": 4,
+          "source_case": "iterable",
+          "declared_type": "Bean<Iterable<Item>>",
+          "assertion_line": 166,
+          "diagnostic": "fixed=false, typed=true",
+          "expected": "{\"values\":{\"kind\":\"item\",\"nested\":{\"text\":\"keep\"}},\"after\":1}",
+          "actual": "{\"values\":{\"nested\":{\"text\":\"keep\"}},\"after\":1}"
+        }
+      ],
+      "causality_limit": "The failing assertions are demonstrated; these logs alone do not establish that each expected type/filter behavior exists on unchanged 3.1 or that the production patch introduced these semantic differences."
+    },
+    "aggregate_reconciliation": {
+      "jdk17": {
+        "classes": 770,
+        "tests": 5883,
+        "failures": 2,
+        "errors": 0,
+        "skips": 1
+      },
+      "jdk21_and_25": {
+        "classes": 771,
+        "tests": 5885,
+        "failures": 2,
+        "errors": 0,
+        "skips": 1
+      },
+      "additional_java21_class": "tools.jackson.databind.jdk21.Java21CollectionsTest (2 passing tests)",
+      "sole_skipped_class": "tools.jackson.databind.ser.jdk.JDKTypeSerializationTest (40 tests; 1 skip)",
+      "all_class_sums_match_aggregate": true
+    },
+    "new_class_counts_per_job": {
+      "tests": 74,
+      "passed": 72,
+      "failures": 2,
+      "errors": 0,
+      "skipped": 0,
+      "original_class": {
+        "tests": 53,
+        "passed": 53,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "compatibility_class": {
+        "tests": 21,
+        "passed": 19,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    "build_jobs": [
+      {
+        "job_id": 117702456669,
+        "name": "build (17, windows-latest, W)",
+        "url": "https://github.com/agamal026/jackson-databind/actions/runs/39136668969/job/117702456669",
+        "status": "completed",
+        "conclusion": "failure",
+        "java": "17.0.20+101",
+        "full_suite": {
+          "tests": 5883,
+          "failures": 2,
+          "errors": 0,
+          "skips": 1
+        },
+        "new_classes": [
+          {
+            "tests": 21,
+            "failures": 2,
+            "errors": 0,
+            "skips": 0,
+            "class": "tools.jackson.databind.ser.filter.JsonIncludeUnwrappedContainer6299CompatibilityTest"
+          },
+          {
+            "tests": 53,
+            "failures": 0,
+            "errors": 0,
+            "skips": 0,
+            "class": "tools.jackson.databind.ser.filter.JsonIncludeUnwrappedContainer6299Test"
+          }
+        ],
+        "android_step": {
+          "name": "Verify Android SDK Compatibility",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 7,
+          "started_at": "2026-10-18T14:37:09Z",
+          "completed_at": "2026-10-18T14:37:09Z"
+        }
+      },
+      {
+        "job_id": 117702456803,
+        "name": "build (21, ubuntu-24.04)",
+        "url": "https://github.com/agamal026/jackson-databind/actions/runs/39136668969/job/117702456803",
+        "status": "completed",
+        "conclusion": "failure",
+        "java": "21.0.12+1",
+        "full_suite": {
+          "tests": 5885,
+          "failures": 2,
+          "errors": 0,
+          "skips": 1
+        },
+        "new_classes": [
+          {
+            "tests": 53,
+            "failures": 0,
+            "errors": 0,
+            "skips": 0,
+            "class": "tools.jackson.databind.ser.filter.JsonIncludeUnwrappedContainer6299Test"
+          },
+          {
+            "tests": 21,
+            "failures": 2,
+            "errors": 0,
+            "skips": 0,
+            "class": "tools.jackson.databind.ser.filter.JsonIncludeUnwrappedContainer6299CompatibilityTest"
+          }
+        ],
+        "android_step": {
+          "name": "Verify Android SDK Compatibility",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8,
+          "started_at": "2026-10-18T14:36:50Z",
+          "completed_at": "2026-10-18T14:36:50Z"
+        }
+      },
+      {
+        "job_id": 117702456813,
+        "name": "build (25, ubuntu-24.04)",
+        "url": "https://github.com/agamal026/jackson-databind/actions/runs/39136668969/job/117702456813",
+        "status": "completed",
+        "conclusion": "failure",
+        "java": "25.0.4+1",
+        "full_suite": {
+          "tests": 5885,
+          "failures": 2,
+          "errors": 0,
+          "skips": 1
+        },
+        "new_classes": [
+          {
+            "tests": 53,
+            "failures": 0,
+            "errors": 0,
+            "skips": 0,
+            "class": "tools.jackson.databind.ser.filter.JsonIncludeUnwrappedContainer6299Test"
+          },
+          {
+            "tests": 21,
+            "failures": 2,
+            "errors": 0,
+            "skips": 0,
+            "class": "tools.jackson.databind.ser.filter.JsonIncludeUnwrappedContainer6299CompatibilityTest"
+          }
+        ],
+        "android_step": {
+          "name": "Verify Android SDK Compatibility",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8,
+          "started_at": "2026-10-18T14:36:56Z",
+          "completed_at": "2026-10-18T14:36:56Z"
+        }
+      },
+      {
+        "job_id": 117702456822,
+        "name": "build (17, ubuntu-24.04)",
+        "url": "https://github.com/agamal026/jackson-databind/actions/runs/39136668969/job/117702456822",
+        "status": "completed",
+        "conclusion": "failure",
+        "java": "17.0.20+1",
+        "full_suite": {
+          "tests": 5883,
+          "failures": 2,
+          "errors": 0,
+          "skips": 1
+        },
+        "new_classes": [
+          {
+            "tests": 53,
+            "failures": 0,
+            "errors": 0,
+            "skips": 0,
+            "class": "tools.jackson.databind.ser.filter.JsonIncludeUnwrappedContainer6299Test"
+          },
+          {
+            "tests": 21,
+            "failures": 2,
+            "errors": 0,
+            "skips": 0,
+            "class": "tools.jackson.databind.ser.filter.JsonIncludeUnwrappedContainer6299CompatibilityTest"
+          }
+        ],
+        "android_step": {
+          "name": "Verify Android SDK Compatibility",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8,
+          "started_at": "2026-10-18T14:36:47Z",
+          "completed_at": "2026-10-18T14:36:47Z"
+        }
+      }
+    ]
+  },
+  "final_validation": {
+    "status": "completed",
+    "conclusion": "success",
+    "environment_scope": "User-owned validation fork agamal026/jackson-databind, draft PR #2; these are not upstream PR #6302 check results.",
+    "source": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45",
+    "tree": "861d2292ae59d0c91fd3b572cd044212e2580c00",
+    "actual_checkout_merge": "086c5a281dbe8099cd3367d089ca97ce66bea449",
+    "merge_tree": "861d2292ae59d0c91fd3b572cd044212e2580c00",
+    "head_and_merge_tree_match": true,
+    "run": {
+      "id": 39137464915,
+      "url": "https://github.com/agamal026/jackson-databind/actions/runs/39137464915",
+      "name": "Build and Deploy Snapshot",
+      "event": "pull_request",
+      "attempt": 1,
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-18T14:46:03Z",
+      "updated_at": "2026-10-18T14:49:22Z"
+    },
+    "audit": "final-hosted/attempt-382616/audit.json",
+    "audit_sha256": "e77f12045388fa4ea2fd1ad6de2b8ae96a7e9d325147a0df3563d8aaaa8d6575",
+    "audit_finalized_at_utc": "2026-10-18T14:53:35.102703+00:00",
+    "observations": {
+      "head_checked_before_each": true,
+      "initial_utc": "2026-10-18T14:46:24Z",
+      "final_window_utc": {
+        "start": "2026-10-18T14:50:34Z",
+        "end": "2026-10-18T14:50:35Z"
+      },
+      "count": 4,
+      "full_logs_retrieved_by_utc": "2026-10-18T14:51:03Z",
+      "all_observations_saved": "observations.json"
+    },
+    "result": "All four actual build jobs and the workflow completed successfully. Each job executes 53 original regression cases and 21 compatibility cases, all passing; full-suite totals reconcile with the individual class summaries. Linux JDK17 additionally passes the Android SDK compatibility step.",
+    "new_class_counts_per_job": {
+      "tests": 74,
+      "passed": 74,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "original": 53,
+      "compatibility": 21
+    },
+    "build_jobs": [
+      {
+        "job_id": 117704796544,
+        "name": "build (17, windows-latest, W)",
+        "url": "https://github.com/agamal026/jackson-databind/actions/runs/39137464915/job/117704796544",
+        "status": "completed",
+        "conclusion": "success",
+        "java": "17.0.20+101",
+        "distribution": "Temurin",
+        "build_command": "./mvnw -B -ff -ntp verify",
+        "full_suite": {
+          "tests": 5883,
+          "failures": 0,
+          "errors": 0,
+          "skips": 1,
+          "passed": 5882
+        },
+        "contribution_classes": [
+          {
+            "tests": 21,
+            "failures": 0,
+            "errors": 0,
+            "skips": 0,
+            "class": "tools.jackson.databind.ser.filter.JsonIncludeUnwrappedContainer6299CompatibilityTest"
+          },
+          {
+            "tests": 53,
+            "failures": 0,
+            "errors": 0,
+            "skips": 0,
+            "class": "tools.jackson.databind.ser.filter.JsonIncludeUnwrappedContainer6299Test"
+          }
+        ],
+        "android_step": {
+          "name": "Verify Android SDK Compatibility",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 7,
+          "started_at": "2026-10-18T14:49:13Z",
+          "completed_at": "2026-10-18T14:49:13Z"
+        }
+      },
+      {
+        "job_id": 117704796668,
+        "name": "build (21, ubuntu-24.04)",
+        "url": "https://github.com/agamal026/jackson-databind/actions/runs/39137464915/job/117704796668",
+        "status": "completed",
+        "conclusion": "success",
+        "java": "21.0.12+1",
+        "distribution": "Temurin",
+        "build_command": "./mvnw -B -ff -ntp verify",
+        "full_suite": {
+          "tests": 5885,
+          "failures": 0,
+          "errors": 0,
+          "skips": 1,
+          "passed": 5884
+        },
+        "contribution_classes": [
+          {
+            "tests": 53,
+            "failures": 0,
+            "errors": 0,
+            "skips": 0,
+            "class": "tools.jackson.databind.ser.filter.JsonIncludeUnwrappedContainer6299Test"
+          },
+          {
+            "tests": 21,
+            "failures": 0,
+            "errors": 0,
+            "skips": 0,
+            "class": "tools.jackson.databind.ser.filter.JsonIncludeUnwrappedContainer6299CompatibilityTest"
+          }
+        ],
+        "android_step": {
+          "name": "Verify Android SDK Compatibility",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8,
+          "started_at": "2026-10-18T14:47:47Z",
+          "completed_at": "2026-10-18T14:47:47Z"
+        }
+      },
+      {
+        "job_id": 117704796669,
+        "name": "build (17, ubuntu-24.04)",
+        "url": "https://github.com/agamal026/jackson-databind/actions/runs/39137464915/job/117704796669",
+        "status": "completed",
+        "conclusion": "success",
+        "java": "17.0.20+1",
+        "distribution": "Temurin",
+        "build_command": "./mvnw -B -ff -ntp verify",
+        "full_suite": {
+          "tests": 5883,
+          "failures": 0,
+          "errors": 0,
+          "skips": 1,
+          "passed": 5882
+        },
+        "contribution_classes": [
+          {
+            "tests": 53,
+            "failures": 0,
+            "errors": 0,
+            "skips": 0,
+            "class": "tools.jackson.databind.ser.filter.JsonIncludeUnwrappedContainer6299Test"
+          },
+          {
+            "tests": 21,
+            "failures": 0,
+            "errors": 0,
+            "skips": 0,
+            "class": "tools.jackson.databind.ser.filter.JsonIncludeUnwrappedContainer6299CompatibilityTest"
+          }
+        ],
+        "android_step": {
+          "name": "Verify Android SDK Compatibility",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-18T14:48:10Z",
+          "completed_at": "2026-10-18T14:48:14Z"
+        }
+      },
+      {
+        "job_id": 117704796724,
+        "name": "build (25, ubuntu-24.04)",
+        "url": "https://github.com/agamal026/jackson-databind/actions/runs/39137464915/job/117704796724",
+        "status": "completed",
+        "conclusion": "success",
+        "java": "25.0.4+1",
+        "distribution": "Temurin",
+        "build_command": "./mvnw -B -ff -ntp verify",
+        "full_suite": {
+          "tests": 5885,
+          "failures": 0,
+          "errors": 0,
+          "skips": 1,
+          "passed": 5884
+        },
+        "contribution_classes": [
+          {
+            "tests": 53,
+            "failures": 0,
+            "errors": 0,
+            "skips": 0,
+            "class": "tools.jackson.databind.ser.filter.JsonIncludeUnwrappedContainer6299Test"
+          },
+          {
+            "tests": 21,
+            "failures": 0,
+            "errors": 0,
+            "skips": 0,
+            "class": "tools.jackson.databind.ser.filter.JsonIncludeUnwrappedContainer6299CompatibilityTest"
+          }
+        ],
+        "android_step": {
+          "name": "Verify Android SDK Compatibility",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8,
+          "started_at": "2026-10-18T14:47:53Z",
+          "completed_at": "2026-10-18T14:47:53Z"
+        }
+      }
+    ],
+    "aggregate_reconciliation": {
+      "jdk17": {
+        "test_classes": 770,
+        "tests": 5883,
+        "failures": 0,
+        "errors": 0,
+        "skips": 1
+      },
+      "jdk21_and_25": {
+        "test_classes": 771,
+        "tests": 5885,
+        "failures": 0,
+        "errors": 0,
+        "skips": 1
+      },
+      "contribution_cases_per_job": {
+        "original": 53,
+        "compatibility": 21,
+        "total": 74,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0
+      },
+      "extra_java21_class": "tools.jackson.databind.jdk21.Java21CollectionsTest (2 passing tests)",
+      "sole_skipped_class": "tools.jackson.databind.ser.jdk.JDKTypeSerializationTest (40 tests, 1 skip)",
+      "all_class_sums_match_aggregate": true
+    },
+    "android": {
+      "job_id": 117704796669,
+      "job_url": "https://github.com/agamal026/jackson-databind/actions/runs/39137464915/job/117704796669",
+      "step": "Verify Android SDK Compatibility",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-18T14:48:10Z",
+      "completed_at": "2026-10-18T14:48:14Z",
+      "actual_command": "./mvnw -B -q -ff -ntp -DskipTests animal-sniffer:check",
+      "command_log_lines": [
+        "2026-10-18T14:48:10.4739103Z ##[group]Run ./mvnw -B -q -ff -ntp -DskipTests animal-sniffer:check",
+        "2026-10-18T14:48:10.4740007Z \u001b[36;1m./mvnw -B -q -ff -ntp -DskipTests animal-sniffer:check\u001b[0m",
+        "2026-10-18T14:48:10.4802923Z shell: /usr/bin/bash -e {0}",
+        "2026-10-18T14:48:10.4803180Z env:",
+        "2026-10-18T14:48:10.4803460Z   JAVA_OPTS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1",
+        "2026-10-18T14:48:10.4803922Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64",
+        "2026-10-18T14:48:10.4804439Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64",
+        "2026-10-18T14:48:10.4804854Z ##[endgroup]"
+      ],
+      "other_three_android_steps": "skipped",
+      "scope": "The observed Animal Sniffer compatibility check; no Android device/emulator execution is claimed."
+    },
+    "skipped_nonbuild_jobs": [
+      {
+        "id": 117705508567,
+        "name": "Trigger v3 dep builds",
+        "status": "completed",
+        "conclusion": "skipped",
+        "url": "https://github.com/agamal026/jackson-databind/actions/runs/39137464915/job/117705508567",
+        "started_at": "2026-10-18T14:49:22Z",
+        "completed_at": "2026-10-18T14:49:21Z"
+      },
+      {
+        "id": 117705508754,
+        "name": "Trigger v2 dep builds",
+        "status": "completed",
+        "conclusion": "skipped",
+        "url": "https://github.com/agamal026/jackson-databind/actions/runs/39137464915/job/117705508754",
+        "started_at": "2026-10-18T14:49:22Z",
+        "completed_at": "2026-10-18T14:49:21Z"
+      }
+    ],
+    "test_fixture_scope": "The compatibility fixture compares actual singleton unwrapped output, captured first, to the existing wrapped path from the same writer. It keeps explicit retained-value and untyped-empty assertions plus all 53 original cases. It does not claim an independently executed unchanged-3.1 baseline for the two previous compatibility mismatches.",
+    "upstream_check_results_claimed": false
+  },
+  "original_3x_source_retained": {
+    "commit": "de533c218b30a86ac9e74a6627b7224c2a0d2987",
+    "archive_branch": "archive/6299-original-3.x",
+    "url": "https://github.com/agamal026/jackson-databind/tree/archive/6299-original-3.x",
+    "scope": "Original 3.x contribution source retained independently of this 3.1 follow-up."
+  },
+  "publication": {
+    "direct_publication_scope": "Top-level allowlist only; full hosted audits, logs and metadata remain inside the archive.",
+    "allowlist": "PUBLICATION.json",
+    "payload_manifest_requires_archive_extraction": true,
+    "original_api_review_preserved_in_archive": "JACKSON-6299-API-CORRECTION-REVIEW.md",
+    "api_review_public_copy": "JACKSON-6299-API-CORRECTION-REVIEW-PUBLIC.md",
+    "status": "prepared_locally_for_root_publication"
+  }
+}

@@ -1,0 +1,364 @@
+{
+  "schema_version": 1,
+  "observed_at_utc": "2026-10-18T14:48:40.245542+00:00",
+  "repository": "agamal026/jackson-databind",
+  "upstream_repository": "FasterXML/jackson-databind",
+  "upstream_3_1_base": {
+    "commit": "5d64697ef018099e3d5f951668752ec9d4ffabf9",
+    "tree": "fb99fe7d78a338331eacc58944fa9b89de0c41c0",
+    "parents": [
+      "9b5fe86390b37dbbd81ae479f67d23b4647c7049"
+    ],
+    "url": "https://github.com/agamal026/jackson-databind/commit/5d64697ef018099e3d5f951668752ec9d4ffabf9"
+  },
+  "test_only_baseline": {
+    "commit": "4a47e457e7bf8e877bb837693eab58fdc256c22c",
+    "tree": "401a300365df0c4d5e501da374c55d14fc984875",
+    "parents": [
+      "5d64697ef018099e3d5f951668752ec9d4ffabf9"
+    ],
+    "url": "https://github.com/agamal026/jackson-databind/commit/4a47e457e7bf8e877bb837693eab58fdc256c22c"
+  },
+  "first_implementation": {
+    "commit": "c2366f76b7a3e1a2c707acb4e25df2e1cd3a6a00",
+    "tree": "93ddd45b71b193a9305ebe1d87e690998192e054",
+    "parents": [
+      "4a47e457e7bf8e877bb837693eab58fdc256c22c"
+    ],
+    "url": "https://github.com/agamal026/jackson-databind/commit/c2366f76b7a3e1a2c707acb4e25df2e1cd3a6a00"
+  },
+  "corrected_source": {
+    "commit": "60218d2e760de528fdc48748c8a844a34f3755c8",
+    "tree": "2eeb7de459109da30ccea323373d1f6c47ceba71",
+    "parents": [
+      "c2366f76b7a3e1a2c707acb4e25df2e1cd3a6a00"
+    ],
+    "url": "https://github.com/agamal026/jackson-databind/commit/60218d2e760de528fdc48748c8a844a34f3755c8"
+  },
+  "files": [
+    {
+      "path": "src/main/java/tools/jackson/databind/ser/jdk/CollectionSerializer.java",
+      "reviewed_first_implementation": {
+        "commit": "c2366f76b7a3e1a2c707acb4e25df2e1cd3a6a00",
+        "git_blob": "4c8a462d1ade3622e089190b12a9b6a7e80e7d1f",
+        "sha256": "b3247fd0214a7c6e91c5d1331d1aed5a13bb3049e037ea822388682a22f8783e",
+        "bytes": 10415
+      },
+      "corrected_source": {
+        "commit": "60218d2e760de528fdc48748c8a844a34f3755c8",
+        "git_blob": "4c8a462d1ade3622e089190b12a9b6a7e80e7d1f",
+        "sha256": "b3247fd0214a7c6e91c5d1331d1aed5a13bb3049e037ea822388682a22f8783e",
+        "bytes": 10415
+      },
+      "final_candidate": {
+        "commit": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45",
+        "git_blob": "4c8a462d1ade3622e089190b12a9b6a7e80e7d1f",
+        "sha256": "b3247fd0214a7c6e91c5d1331d1aed5a13bb3049e037ea822388682a22f8783e",
+        "bytes": 10415
+      },
+      "unchanged_between_api_correction_and_final_candidate": true,
+      "final_candidate_unchanged_since_original_review": true,
+      "api_correction_unchanged_since_original_review": true
+    },
+    {
+      "path": "src/main/java/tools/jackson/databind/ser/jdk/EnumSetSerializer.java",
+      "reviewed_first_implementation": {
+        "commit": "c2366f76b7a3e1a2c707acb4e25df2e1cd3a6a00",
+        "git_blob": "81110d4d0ab0f59208a2e3450a664e7b573e033f",
+        "sha256": "6894831d8548c0f149ff099eee4a8ca3ebe8df9d1f28cbe62a1ae4c1127d5ee8",
+        "bytes": 4471
+      },
+      "corrected_source": {
+        "commit": "60218d2e760de528fdc48748c8a844a34f3755c8",
+        "git_blob": "81110d4d0ab0f59208a2e3450a664e7b573e033f",
+        "sha256": "6894831d8548c0f149ff099eee4a8ca3ebe8df9d1f28cbe62a1ae4c1127d5ee8",
+        "bytes": 4471
+      },
+      "final_candidate": {
+        "commit": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45",
+        "git_blob": "81110d4d0ab0f59208a2e3450a664e7b573e033f",
+        "sha256": "6894831d8548c0f149ff099eee4a8ca3ebe8df9d1f28cbe62a1ae4c1127d5ee8",
+        "bytes": 4471
+      },
+      "unchanged_between_api_correction_and_final_candidate": true,
+      "final_candidate_unchanged_since_original_review": true,
+      "api_correction_unchanged_since_original_review": true
+    },
+    {
+      "path": "src/main/java/tools/jackson/databind/ser/jdk/IndexedListSerializer.java",
+      "reviewed_first_implementation": {
+        "commit": "c2366f76b7a3e1a2c707acb4e25df2e1cd3a6a00",
+        "git_blob": "11c9d36bb3fc375b7a512f7fc3dd7e240d44a74e",
+        "sha256": "c6fd4ce0c7ebf79bc3dc50dfb8280c716374480d48a55bf730de6dc4bf5502da",
+        "bytes": 10130
+      },
+      "corrected_source": {
+        "commit": "60218d2e760de528fdc48748c8a844a34f3755c8",
+        "git_blob": "11c9d36bb3fc375b7a512f7fc3dd7e240d44a74e",
+        "sha256": "c6fd4ce0c7ebf79bc3dc50dfb8280c716374480d48a55bf730de6dc4bf5502da",
+        "bytes": 10130
+      },
+      "final_candidate": {
+        "commit": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45",
+        "git_blob": "11c9d36bb3fc375b7a512f7fc3dd7e240d44a74e",
+        "sha256": "c6fd4ce0c7ebf79bc3dc50dfb8280c716374480d48a55bf730de6dc4bf5502da",
+        "bytes": 10130
+      },
+      "unchanged_between_api_correction_and_final_candidate": true,
+      "final_candidate_unchanged_since_original_review": true,
+      "api_correction_unchanged_since_original_review": true
+    },
+    {
+      "path": "src/main/java/tools/jackson/databind/ser/jdk/IndexedStringListSerializer.java",
+      "reviewed_first_implementation": {
+        "commit": "c2366f76b7a3e1a2c707acb4e25df2e1cd3a6a00",
+        "git_blob": "05e3b84444bc0f2f4f3c6cfd6145d8342278216f",
+        "sha256": "499442ef8827f02350f21896105992c2aeeeddbc2a00224a4200d899dc81b264",
+        "bytes": 6535
+      },
+      "corrected_source": {
+        "commit": "60218d2e760de528fdc48748c8a844a34f3755c8",
+        "git_blob": "05e3b84444bc0f2f4f3c6cfd6145d8342278216f",
+        "sha256": "499442ef8827f02350f21896105992c2aeeeddbc2a00224a4200d899dc81b264",
+        "bytes": 6535
+      },
+      "final_candidate": {
+        "commit": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45",
+        "git_blob": "05e3b84444bc0f2f4f3c6cfd6145d8342278216f",
+        "sha256": "499442ef8827f02350f21896105992c2aeeeddbc2a00224a4200d899dc81b264",
+        "bytes": 6535
+      },
+      "unchanged_between_api_correction_and_final_candidate": true,
+      "final_candidate_unchanged_since_original_review": true,
+      "api_correction_unchanged_since_original_review": true
+    },
+    {
+      "path": "src/main/java/tools/jackson/databind/ser/jdk/IterableSerializer.java",
+      "reviewed_first_implementation": {
+        "commit": "c2366f76b7a3e1a2c707acb4e25df2e1cd3a6a00",
+        "git_blob": "85b77ed2a08abe6ba4b949e4bc44e2c5fa95ffc6",
+        "sha256": "af95ee291edbf785cf604df1d3d3b24cf2ac0af1f234e192e3e2701aa95791d1",
+        "bytes": 6424
+      },
+      "corrected_source": {
+        "commit": "60218d2e760de528fdc48748c8a844a34f3755c8",
+        "git_blob": "85b77ed2a08abe6ba4b949e4bc44e2c5fa95ffc6",
+        "sha256": "af95ee291edbf785cf604df1d3d3b24cf2ac0af1f234e192e3e2701aa95791d1",
+        "bytes": 6424
+      },
+      "final_candidate": {
+        "commit": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45",
+        "git_blob": "85b77ed2a08abe6ba4b949e4bc44e2c5fa95ffc6",
+        "sha256": "af95ee291edbf785cf604df1d3d3b24cf2ac0af1f234e192e3e2701aa95791d1",
+        "bytes": 6424
+      },
+      "unchanged_between_api_correction_and_final_candidate": true,
+      "final_candidate_unchanged_since_original_review": true,
+      "api_correction_unchanged_since_original_review": true
+    },
+    {
+      "path": "src/main/java/tools/jackson/databind/ser/jdk/JDKArraySerializers.java",
+      "reviewed_first_implementation": {
+        "commit": "c2366f76b7a3e1a2c707acb4e25df2e1cd3a6a00",
+        "git_blob": "66441372973e682e39468e857a48a556be0d6a77",
+        "sha256": "6412647a4afec487bcc6ba16a846cacfbd5db7248727f5069d3e1fbcf26f1094",
+        "bytes": 34049
+      },
+      "corrected_source": {
+        "commit": "60218d2e760de528fdc48748c8a844a34f3755c8",
+        "git_blob": "66441372973e682e39468e857a48a556be0d6a77",
+        "sha256": "6412647a4afec487bcc6ba16a846cacfbd5db7248727f5069d3e1fbcf26f1094",
+        "bytes": 34049
+      },
+      "final_candidate": {
+        "commit": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45",
+        "git_blob": "66441372973e682e39468e857a48a556be0d6a77",
+        "sha256": "6412647a4afec487bcc6ba16a846cacfbd5db7248727f5069d3e1fbcf26f1094",
+        "bytes": 34049
+      },
+      "unchanged_between_api_correction_and_final_candidate": true,
+      "final_candidate_unchanged_since_original_review": true,
+      "api_correction_unchanged_since_original_review": true
+    },
+    {
+      "path": "src/main/java/tools/jackson/databind/ser/jdk/ObjectArraySerializer.java",
+      "reviewed_first_implementation": {
+        "commit": "c2366f76b7a3e1a2c707acb4e25df2e1cd3a6a00",
+        "git_blob": "ab7fa5f48b62bd2d5b44ed2c849d70f25b93aa36",
+        "sha256": "35a6784d05089c085428c2878cd33e4034be40b7105aa1e824aff751c9930368",
+        "bytes": 17661
+      },
+      "corrected_source": {
+        "commit": "60218d2e760de528fdc48748c8a844a34f3755c8",
+        "git_blob": "ab7fa5f48b62bd2d5b44ed2c849d70f25b93aa36",
+        "sha256": "35a6784d05089c085428c2878cd33e4034be40b7105aa1e824aff751c9930368",
+        "bytes": 17661
+      },
+      "final_candidate": {
+        "commit": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45",
+        "git_blob": "ab7fa5f48b62bd2d5b44ed2c849d70f25b93aa36",
+        "sha256": "35a6784d05089c085428c2878cd33e4034be40b7105aa1e824aff751c9930368",
+        "bytes": 17661
+      },
+      "unchanged_between_api_correction_and_final_candidate": true,
+      "final_candidate_unchanged_since_original_review": true,
+      "api_correction_unchanged_since_original_review": true
+    },
+    {
+      "path": "src/main/java/tools/jackson/databind/ser/jdk/StringArraySerializer.java",
+      "reviewed_first_implementation": {
+        "commit": "c2366f76b7a3e1a2c707acb4e25df2e1cd3a6a00",
+        "git_blob": "56b0b7984d1e953f5fb98d3e98682a8df879dc92",
+        "sha256": "ebe271bb76f188e52cb4f26f1a3dd95150c891145d86924847cd9c15d461ee78",
+        "bytes": 11834
+      },
+      "corrected_source": {
+        "commit": "60218d2e760de528fdc48748c8a844a34f3755c8",
+        "git_blob": "56b0b7984d1e953f5fb98d3e98682a8df879dc92",
+        "sha256": "ebe271bb76f188e52cb4f26f1a3dd95150c891145d86924847cd9c15d461ee78",
+        "bytes": 11834
+      },
+      "final_candidate": {
+        "commit": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45",
+        "git_blob": "56b0b7984d1e953f5fb98d3e98682a8df879dc92",
+        "sha256": "ebe271bb76f188e52cb4f26f1a3dd95150c891145d86924847cd9c15d461ee78",
+        "bytes": 11834
+      },
+      "unchanged_between_api_correction_and_final_candidate": true,
+      "final_candidate_unchanged_since_original_review": true,
+      "api_correction_unchanged_since_original_review": true
+    },
+    {
+      "path": "src/main/java/tools/jackson/databind/ser/jdk/StringCollectionSerializer.java",
+      "reviewed_first_implementation": {
+        "commit": "c2366f76b7a3e1a2c707acb4e25df2e1cd3a6a00",
+        "git_blob": "2050dcda8b4e46157032745cbd2c6581a7d6b17e",
+        "sha256": "1f4c190e892f6dbea74612f092c25bc7efcec258806685b86a5491a50b4d7a75",
+        "bytes": 6557
+      },
+      "corrected_source": {
+        "commit": "60218d2e760de528fdc48748c8a844a34f3755c8",
+        "git_blob": "2050dcda8b4e46157032745cbd2c6581a7d6b17e",
+        "sha256": "1f4c190e892f6dbea74612f092c25bc7efcec258806685b86a5491a50b4d7a75",
+        "bytes": 6557
+      },
+      "final_candidate": {
+        "commit": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45",
+        "git_blob": "2050dcda8b4e46157032745cbd2c6581a7d6b17e",
+        "sha256": "1f4c190e892f6dbea74612f092c25bc7efcec258806685b86a5491a50b4d7a75",
+        "bytes": 6557
+      },
+      "unchanged_between_api_correction_and_final_candidate": true,
+      "final_candidate_unchanged_since_original_review": true,
+      "api_correction_unchanged_since_original_review": true
+    },
+    {
+      "path": "src/main/java/tools/jackson/databind/ser/jdk/UnwrappedContainerSerializerHelper.java",
+      "reviewed_first_implementation": {
+        "commit": "c2366f76b7a3e1a2c707acb4e25df2e1cd3a6a00",
+        "git_blob": "8e4320f763ce4cc690cc8bb3fa28256c74bc392a",
+        "sha256": "8d8b1beed81c543352166d720dad06c402038e34cec5c47d3c0de926614acfa3",
+        "bytes": 827
+      },
+      "corrected_source": {
+        "commit": "60218d2e760de528fdc48748c8a844a34f3755c8",
+        "git_blob": "8e4320f763ce4cc690cc8bb3fa28256c74bc392a",
+        "sha256": "8d8b1beed81c543352166d720dad06c402038e34cec5c47d3c0de926614acfa3",
+        "bytes": 827
+      },
+      "final_candidate": {
+        "commit": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45",
+        "git_blob": "8e4320f763ce4cc690cc8bb3fa28256c74bc392a",
+        "sha256": "8d8b1beed81c543352166d720dad06c402038e34cec5c47d3c0de926614acfa3",
+        "bytes": 827
+      },
+      "unchanged_between_api_correction_and_final_candidate": true,
+      "final_candidate_unchanged_since_original_review": true,
+      "api_correction_unchanged_since_original_review": true
+    },
+    {
+      "path": "src/test/java/tools/jackson/databind/ser/filter/JsonIncludeUnwrappedContainer6299CompatibilityTest.java",
+      "reviewed_first_implementation": {
+        "commit": "c2366f76b7a3e1a2c707acb4e25df2e1cd3a6a00",
+        "git_blob": "ee003d3222ba219320e43cefd11a54e855be9ebf",
+        "sha256": "6c5e13b5926b0d71e84c92e435df8aa184786ab31e8fd2d694813df437921a37",
+        "bytes": 10244
+      },
+      "corrected_source": {
+        "commit": "60218d2e760de528fdc48748c8a844a34f3755c8",
+        "git_blob": "ee003d3222ba219320e43cefd11a54e855be9ebf",
+        "sha256": "6c5e13b5926b0d71e84c92e435df8aa184786ab31e8fd2d694813df437921a37",
+        "bytes": 10244
+      },
+      "final_candidate": {
+        "commit": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45",
+        "git_blob": "306f9d7f1eb472a13784ab1d43ed6976b4cb8642",
+        "sha256": "047587024422732e8e26ca6fde2aa0c77ccc511f506c0c81ec42316525da404e",
+        "bytes": 11217
+      },
+      "unchanged_between_api_correction_and_final_candidate": false,
+      "final_candidate_unchanged_since_original_review": false,
+      "api_correction_unchanged_since_original_review": true
+    },
+    {
+      "path": "src/test/java/tools/jackson/databind/ser/filter/JsonIncludeUnwrappedContainer6299Test.java",
+      "reviewed_first_implementation": {
+        "commit": "c2366f76b7a3e1a2c707acb4e25df2e1cd3a6a00",
+        "git_blob": "8c40fe94b638eb9bbbdcf9c977545d0b53f758e1",
+        "sha256": "d5ba76d4fc261616bc7d62d2cad23294a9d9ae61a95dc49cc4b2b73ba53ca235",
+        "bytes": 13138
+      },
+      "corrected_source": {
+        "commit": "60218d2e760de528fdc48748c8a844a34f3755c8",
+        "git_blob": "9c990a0286dbe0ba5a4a88956552c36c9656d1f5",
+        "sha256": "632b0aadca97a90500e5cea1a3153cde310dd0bf38ff24adf4f2a27a6d7e2f60",
+        "bytes": 13135
+      },
+      "final_candidate": {
+        "commit": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45",
+        "git_blob": "9c990a0286dbe0ba5a4a88956552c36c9656d1f5",
+        "sha256": "632b0aadca97a90500e5cea1a3153cde310dd0bf38ff24adf4f2a27a6d7e2f60",
+        "bytes": 13135
+      },
+      "unchanged_between_api_correction_and_final_candidate": true,
+      "final_candidate_unchanged_since_original_review": false,
+      "api_correction_unchanged_since_original_review": false
+    }
+  ],
+  "verification": "Exact commit/blob objects read from Git and SHA-256 computed over all twelve final blobs. Canonical public GitHub Git Data independently confirmed the final commit, parent and tree; the exact parent-to-final comparison contains only the reviewed compatibility fixture change. The original ten production files are unchanged throughout both test corrections.",
+  "final_candidate": {
+    "commit": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45",
+    "tree": "861d2292ae59d0c91fd3b572cd044212e2580c00",
+    "parents": [
+      "60218d2e760de528fdc48748c8a844a34f3755c8"
+    ],
+    "url": "https://github.com/agamal026/jackson-databind/commit/38261628a27c109e6e49c916cdb0f7e8bf7bbf45"
+  },
+  "patch_target": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45",
+  "review_binding": {
+    "original_twelve_file_review": "JACKSON-6299-3.1-SOURCE-REVIEW.md",
+    "api_correction_review": "JACKSON-6299-API-CORRECTION-REVIEW.md",
+    "compatibility_fixture_review": "jackson-6299-3.1-compatibility-fixture-review.md",
+    "compatibility_fixture_review_sha256": "969f2e18b6e45d04e7ec42444d05bf31d91db7cd2f441be30e8724d196e0a214",
+    "review_type": "Automated source review; not human review or test execution.",
+    "api_correction_review_public_copy": "JACKSON-6299-API-CORRECTION-REVIEW-PUBLIC.md",
+    "api_correction_review_original_sha256": "8d1f1bb678b728cafd5e54c90a13f2988d0f3ec6c659fbdea1d0d92fad0ae51c"
+  },
+  "final_validated_source": {
+    "commit": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45",
+    "tree": "861d2292ae59d0c91fd3b572cd044212e2580c00",
+    "parents": [
+      "60218d2e760de528fdc48748c8a844a34f3755c8"
+    ],
+    "url": "https://github.com/agamal026/jackson-databind/commit/38261628a27c109e6e49c916cdb0f7e8bf7bbf45"
+  },
+  "final_validation_binding": {
+    "run_id": 39137464915,
+    "run_url": "https://github.com/agamal026/jackson-databind/actions/runs/39137464915",
+    "actual_checkout_merge": "086c5a281dbe8099cd3367d089ca97ce66bea449",
+    "merge_tree": "861d2292ae59d0c91fd3b572cd044212e2580c00",
+    "audit_archive_path": "final-hosted/attempt-382616/audit.json",
+    "audit_sha256": "e77f12045388fa4ea2fd1ad6de2b8ae96a7e9d325147a0df3563d8aaaa8d6575",
+    "environment": "Owned fork validation, not upstream acceptance or upstream check completion."
+  }
+}
