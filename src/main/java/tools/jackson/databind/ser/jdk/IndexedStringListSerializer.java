@@ -84,10 +84,14 @@ public final class IndexedStringListSerializer
                     ctxt.isEnabled(SerializationFeature.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED))
                     || (_unwrapSingle == Boolean.TRUE)) {
                 // [databind#6299]: a filtered singleton still needs a JSON value.
-                if (_needToCheckFiltering(ctxt) && isEmpty(ctxt, value)) {
-                    g.writeStartArray(value, 0);
-                    g.writeEndArray();
-                    return;
+                try {
+                    if (_needToCheckFiltering(ctxt) && isEmpty(ctxt, value)) {
+                        g.writeStartArray(value, 0);
+                        g.writeEndArray();
+                        return;
+                    }
+                } catch (Exception e) {
+                    wrapAndThrow(ctxt, e, value, 0);
                 }
                 if (_needToCheckFiltering(ctxt)) {
                     serializeContentsFiltered(value, g, ctxt, 1);
