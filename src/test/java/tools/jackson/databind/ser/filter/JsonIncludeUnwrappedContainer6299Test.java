@@ -12,11 +12,15 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import tools.jackson.core.JsonGenerator;
 import tools.jackson.core.type.TypeReference;
 import tools.jackson.databind.ObjectMapper;
 import tools.jackson.databind.ObjectWriter;
+import tools.jackson.databind.SerializationContext;
 import tools.jackson.databind.SerializationFeature;
+import tools.jackson.databind.annotation.JsonSerialize;
 import tools.jackson.databind.json.JsonMapper;
+import tools.jackson.databind.ser.std.StdSerializer;
 import tools.jackson.databind.testutil.DatabindTestUtil;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -68,6 +72,35 @@ class JsonIncludeUnwrappedContainer6299Test extends DatabindTestUtil
         public int hashCode() {
             return 0;
         }
+    }
+
+    static class Item {
+        final String value;
+
+        Item(String value) {
+            this.value = value;
+        }
+    }
+
+    static class ItemSerializer extends StdSerializer<Item> {
+        ItemSerializer() {
+            super(Item.class);
+        }
+
+        @Override
+        public boolean isEmpty(SerializationContext ctxt, Item value) {
+            return "skip".equals(value.value);
+        }
+
+        @Override
+        public void serialize(Item value, JsonGenerator g, SerializationContext ctxt) {
+            g.writeString(value.value);
+        }
+    }
+
+    static class ItemSerializerMixin {
+        @JsonSerialize(contentUsing = ItemSerializer.class)
+        public Object values;
     }
 
     static Stream<Arguments> containers() {
@@ -175,6 +208,17 @@ class JsonIncludeUnwrappedContainer6299Test extends DatabindTestUtil
         ObjectWriter writer = mapper.writerFor(new TypeReference<List<String>>() { });
         assertEquals("[]", writer.writeValueAsString(List.of("")));
         assertEquals("\"keep\"", writer.writeValueAsString(List.of("keep")));
+    }
+
+    @Test
+    void customContentSerializer() {
+        ObjectMapper mapper = _mapper(JsonInclude.Value.construct(
+                JsonInclude.Include.ALWAYS, JsonInclude.Include.NON_EMPTY)).rebuild()
+                .addMixIn(Bean.class, ItemSerializerMixin.class)
+                .build();
+        TypeReference<Bean<List<Item>>> type = new TypeReference<>() { };
+        _assertValues(mapper, type, List.of(new Item("skip")), "[]");
+        _assertValues(mapper, type, List.of(new Item("keep")), "\"keep\"");
     }
 
     private ObjectMapper _mapper(JsonInclude.Value inclusion) {
