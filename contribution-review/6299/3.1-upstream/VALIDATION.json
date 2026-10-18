@@ -1,0 +1,738 @@
+{
+  "schema_version": 1,
+  "subject": "Jackson databind #6299 / upstream PR #6302: completed upstream 3.1 build matrix",
+  "audit_kind": "Independent automated read-only audit of complete upstream logs and public API metadata; not human review",
+  "observed_utc": {
+    "metadata_start": "2026-10-18T15:13:35Z",
+    "metadata_end": "2026-10-18T15:13:36Z",
+    "all_full_logs_retrieved_by": "2026-10-18T15:13:49Z"
+  },
+  "pr": {
+    "url": "https://github.com/FasterXML/jackson-databind/pull/6302",
+    "state": "open",
+    "merged": false,
+    "base_ref": "3.1",
+    "head": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45",
+    "base": "5d64697ef018099e3d5f951668752ec9d4ffabf9",
+    "updated_at": "2026-10-18T15:10:50Z"
+  },
+  "workflow": {
+    "id": 39138054220,
+    "url": "https://github.com/FasterXML/jackson-databind/actions/runs/39138054220",
+    "name": "Build and Deploy Snapshot",
+    "head": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45",
+    "event": "pull_request",
+    "status": "completed",
+    "conclusion": "success",
+    "attempt": 2,
+    "created_at": "2026-10-18T14:54:02Z",
+    "run_started_at": "2026-10-18T15:08:01Z",
+    "updated_at": "2026-10-18T15:10:36Z"
+  },
+  "source": {
+    "head": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45",
+    "base": "5d64697ef018099e3d5f951668752ec9d4ffabf9",
+    "actual_checkout_merge": "21d5d2915c92b1d3ffdd765567d0b3b2d55e00cf",
+    "merge_tree": "861d2292ae59d0c91fd3b572cd044212e2580c00",
+    "merge_parents": [
+      "5d64697ef018099e3d5f951668752ec9d4ffabf9",
+      "38261628a27c109e6e49c916cdb0f7e8bf7bbf45"
+    ],
+    "source_head_tree": "861d2292ae59d0c91fd3b572cd044212e2580c00",
+    "merge_tree_equals_source_tree": true,
+    "all_four_actual_checkout_logs_print_merge": true,
+    "identical_to_owned_validation_tree": "861d2292ae59d0c91fd3b572cd044212e2580c00",
+    "owned_validation_run": "https://github.com/agamal026/jackson-databind/actions/runs/39137464915",
+    "proof": "Current canonical upstream merge Git Data, previously verified immutable source-head Git Data, and the checkout git log output in every complete upstream build log."
+  },
+  "result": "Upstream workflow attempt 2 completed successfully. All four build jobs execute the original 53 regression tests and 21 compatibility tests, all passing. Full suites reconcile to 5,883 tests on JDK17 and 5,885 on JDK21/25, with no failures/errors and one existing skip. Linux JDK17 also passes the Android SDK compatibility step.",
+  "job_count": 6,
+  "build_jobs": [
+    {
+      "job_id": 117709602754,
+      "name": "build (17, ubuntu-24.04)",
+      "url": "https://github.com/FasterXML/jackson-databind/actions/runs/39138054220/job/117709602754",
+      "head_sha": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-18T15:08:04Z",
+      "completed_at": "2026-10-18T15:09:54Z",
+      "class_count": 770,
+      "class_sum": {
+        "tests": 5883,
+        "failures": 0,
+        "errors": 0,
+        "skips": 1
+      },
+      "aggregate": [
+        {
+          "tests": 5883,
+          "failures": 0,
+          "errors": 0,
+          "skips": 1
+        }
+      ],
+      "contribution_classes": [
+        {
+          "tests": 53,
+          "failures": 0,
+          "errors": 0,
+          "skips": 0,
+          "class": "tools.jackson.databind.ser.filter.JsonIncludeUnwrappedContainer6299Test"
+        },
+        {
+          "tests": 21,
+          "failures": 0,
+          "errors": 0,
+          "skips": 0,
+          "class": "tools.jackson.databind.ser.filter.JsonIncludeUnwrappedContainer6299CompatibilityTest"
+        }
+      ],
+      "failing_classes": [],
+      "skipped_classes": [
+        {
+          "tests": 40,
+          "failures": 0,
+          "errors": 0,
+          "skips": 1,
+          "class": "tools.jackson.databind.ser.jdk.JDKTypeSerializationTest"
+        }
+      ],
+      "extra_java21_classes": [],
+      "build_command": "./mvnw -B -ff -ntp verify",
+      "build_step": {
+        "name": "Build",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-10-18T15:08:22Z",
+        "completed_at": "2026-10-18T15:09:42Z"
+      },
+      "build_success_count": 1,
+      "build_failure": false,
+      "compilation_error": false,
+      "java_distribution": "Temurin",
+      "resolved_java_version": "17.0.20+1",
+      "runner_version": "2.337.0",
+      "os_log_lines": [
+        "2026-10-18T15:08:05.2396763Z Ubuntu",
+        "2026-10-18T15:08:05.2397256Z 24.04.5",
+        "2026-10-18T15:08:05.2397748Z LTS"
+      ],
+      "image_log_lines": [
+        "2026-10-18T15:08:05.2399465Z Image: ubuntu-24.04",
+        "2026-10-18T15:08:05.2400152Z Version: 20261012.334.1"
+      ],
+      "checkout_lines": [
+        "2026-10-18T15:08:20.3002962Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +21d5d2915c92b1d3ffdd765567d0b3b2d55e00cf:refs/remotes/pull/6302/merge",
+        "2026-10-18T15:08:21.3135913Z  * [new ref]         21d5d2915c92b1d3ffdd765567d0b3b2d55e00cf -> pull/6302/merge",
+        "2026-10-18T15:08:21.4083718Z 21d5d2915c92b1d3ffdd765567d0b3b2d55e00cf"
+      ],
+      "android_step": {
+        "name": "Verify Android SDK Compatibility",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8,
+        "started_at": "2026-10-18T15:09:44Z",
+        "completed_at": "2026-10-18T15:09:48Z"
+      },
+      "android_command_log_lines": [
+        "2026-10-18T15:09:44.8134736Z ##[group]Run ./mvnw -B -q -ff -ntp -DskipTests animal-sniffer:check",
+        "2026-10-18T15:09:44.8135228Z \u001b[36;1m./mvnw -B -q -ff -ntp -DskipTests animal-sniffer:check\u001b[0m",
+        "2026-10-18T15:09:44.8174227Z shell: /usr/bin/bash -e {0}",
+        "2026-10-18T15:09:44.8174505Z env:",
+        "2026-10-18T15:09:44.8174802Z   JAVA_OPTS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1",
+        "2026-10-18T15:09:44.8175241Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64",
+        "2026-10-18T15:09:44.8175848Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64",
+        "2026-10-18T15:09:44.8176208Z ##[endgroup]"
+      ],
+      "decoded_codepoints": 283159,
+      "utf8_bom": true,
+      "crlf_count": 0,
+      "replacement_character_count": 0
+    },
+    {
+      "job_id": 117709602933,
+      "name": "build (21, ubuntu-24.04)",
+      "url": "https://github.com/FasterXML/jackson-databind/actions/runs/39138054220/job/117709602933",
+      "head_sha": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-18T15:08:04Z",
+      "completed_at": "2026-10-18T15:09:41Z",
+      "class_count": 771,
+      "class_sum": {
+        "tests": 5885,
+        "failures": 0,
+        "errors": 0,
+        "skips": 1
+      },
+      "aggregate": [
+        {
+          "tests": 5885,
+          "failures": 0,
+          "errors": 0,
+          "skips": 1
+        }
+      ],
+      "contribution_classes": [
+        {
+          "tests": 53,
+          "failures": 0,
+          "errors": 0,
+          "skips": 0,
+          "class": "tools.jackson.databind.ser.filter.JsonIncludeUnwrappedContainer6299Test"
+        },
+        {
+          "tests": 21,
+          "failures": 0,
+          "errors": 0,
+          "skips": 0,
+          "class": "tools.jackson.databind.ser.filter.JsonIncludeUnwrappedContainer6299CompatibilityTest"
+        }
+      ],
+      "failing_classes": [],
+      "skipped_classes": [
+        {
+          "tests": 40,
+          "failures": 0,
+          "errors": 0,
+          "skips": 1,
+          "class": "tools.jackson.databind.ser.jdk.JDKTypeSerializationTest"
+        }
+      ],
+      "extra_java21_classes": [
+        {
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skips": 0,
+          "class": "tools.jackson.databind.jdk21.Java21CollectionsTest"
+        }
+      ],
+      "build_command": "./mvnw -B -ff -ntp verify",
+      "build_step": {
+        "name": "Build",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-10-18T15:08:34Z",
+        "completed_at": "2026-10-18T15:09:36Z"
+      },
+      "build_success_count": 1,
+      "build_failure": false,
+      "compilation_error": false,
+      "java_distribution": "Temurin",
+      "resolved_java_version": "21.0.12+1",
+      "runner_version": "2.337.0",
+      "os_log_lines": [
+        "2026-10-18T15:08:05.5139265Z Ubuntu",
+        "2026-10-18T15:08:05.5139758Z 24.04.5",
+        "2026-10-18T15:08:05.5140180Z LTS"
+      ],
+      "image_log_lines": [
+        "2026-10-18T15:08:05.5141817Z Image: ubuntu-24.04",
+        "2026-10-18T15:08:05.5142307Z Version: 20261012.334.1"
+      ],
+      "checkout_lines": [
+        "2026-10-18T15:08:30.2405589Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +21d5d2915c92b1d3ffdd765567d0b3b2d55e00cf:refs/remotes/pull/6302/merge",
+        "2026-10-18T15:08:31.8240946Z  * [new ref]         21d5d2915c92b1d3ffdd765567d0b3b2d55e00cf -> pull/6302/merge",
+        "2026-10-18T15:08:31.9174184Z 21d5d2915c92b1d3ffdd765567d0b3b2d55e00cf"
+      ],
+      "android_step": {
+        "name": "Verify Android SDK Compatibility",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 8,
+        "started_at": "2026-10-18T15:09:38Z",
+        "completed_at": "2026-10-18T15:09:38Z"
+      },
+      "android_command_log_lines": [],
+      "decoded_codepoints": 269469,
+      "utf8_bom": true,
+      "crlf_count": 0,
+      "replacement_character_count": 0
+    },
+    {
+      "job_id": 117709603004,
+      "name": "build (25, ubuntu-24.04)",
+      "url": "https://github.com/FasterXML/jackson-databind/actions/runs/39138054220/job/117709603004",
+      "head_sha": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-18T15:08:04Z",
+      "completed_at": "2026-10-18T15:09:38Z",
+      "class_count": 771,
+      "class_sum": {
+        "tests": 5885,
+        "failures": 0,
+        "errors": 0,
+        "skips": 1
+      },
+      "aggregate": [
+        {
+          "tests": 5885,
+          "failures": 0,
+          "errors": 0,
+          "skips": 1
+        }
+      ],
+      "contribution_classes": [
+        {
+          "tests": 53,
+          "failures": 0,
+          "errors": 0,
+          "skips": 0,
+          "class": "tools.jackson.databind.ser.filter.JsonIncludeUnwrappedContainer6299Test"
+        },
+        {
+          "tests": 21,
+          "failures": 0,
+          "errors": 0,
+          "skips": 0,
+          "class": "tools.jackson.databind.ser.filter.JsonIncludeUnwrappedContainer6299CompatibilityTest"
+        }
+      ],
+      "failing_classes": [],
+      "skipped_classes": [
+        {
+          "tests": 40,
+          "failures": 0,
+          "errors": 0,
+          "skips": 1,
+          "class": "tools.jackson.databind.ser.jdk.JDKTypeSerializationTest"
+        }
+      ],
+      "extra_java21_classes": [
+        {
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skips": 0,
+          "class": "tools.jackson.databind.jdk21.Java21CollectionsTest"
+        }
+      ],
+      "build_command": "./mvnw -B -ff -ntp verify",
+      "build_step": {
+        "name": "Build",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-10-18T15:08:20Z",
+        "completed_at": "2026-10-18T15:09:34Z"
+      },
+      "build_success_count": 1,
+      "build_failure": false,
+      "compilation_error": false,
+      "java_distribution": "Temurin",
+      "resolved_java_version": "25.0.4+1",
+      "runner_version": "2.337.0",
+      "os_log_lines": [
+        "2026-10-18T15:08:05.2679138Z Ubuntu",
+        "2026-10-18T15:08:05.2680076Z 24.04.5",
+        "2026-10-18T15:08:05.2680909Z LTS"
+      ],
+      "image_log_lines": [
+        "2026-10-18T15:08:05.2683801Z Image: ubuntu-24.04",
+        "2026-10-18T15:08:05.2684908Z Version: 20261012.334.1"
+      ],
+      "checkout_lines": [
+        "2026-10-18T15:08:18.4748816Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +21d5d2915c92b1d3ffdd765567d0b3b2d55e00cf:refs/remotes/pull/6302/merge",
+        "2026-10-18T15:08:19.4417350Z  * [new ref]         21d5d2915c92b1d3ffdd765567d0b3b2d55e00cf -> pull/6302/merge",
+        "2026-10-18T15:08:19.5607460Z 21d5d2915c92b1d3ffdd765567d0b3b2d55e00cf"
+      ],
+      "android_step": {
+        "name": "Verify Android SDK Compatibility",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 8,
+        "started_at": "2026-10-18T15:09:37Z",
+        "completed_at": "2026-10-18T15:09:37Z"
+      },
+      "android_command_log_lines": [],
+      "decoded_codepoints": 270619,
+      "utf8_bom": true,
+      "crlf_count": 0,
+      "replacement_character_count": 0
+    },
+    {
+      "job_id": 117709603036,
+      "name": "build (17, windows-latest, W)",
+      "url": "https://github.com/FasterXML/jackson-databind/actions/runs/39138054220/job/117709603036",
+      "head_sha": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-18T15:08:06Z",
+      "completed_at": "2026-10-18T15:10:35Z",
+      "class_count": 770,
+      "class_sum": {
+        "tests": 5883,
+        "failures": 0,
+        "errors": 0,
+        "skips": 1
+      },
+      "aggregate": [
+        {
+          "tests": 5883,
+          "failures": 0,
+          "errors": 0,
+          "skips": 1
+        }
+      ],
+      "contribution_classes": [
+        {
+          "tests": 21,
+          "failures": 0,
+          "errors": 0,
+          "skips": 0,
+          "class": "tools.jackson.databind.ser.filter.JsonIncludeUnwrappedContainer6299CompatibilityTest"
+        },
+        {
+          "tests": 53,
+          "failures": 0,
+          "errors": 0,
+          "skips": 0,
+          "class": "tools.jackson.databind.ser.filter.JsonIncludeUnwrappedContainer6299Test"
+        }
+      ],
+      "failing_classes": [],
+      "skipped_classes": [
+        {
+          "tests": 40,
+          "failures": 0,
+          "errors": 0,
+          "skips": 1,
+          "class": "tools.jackson.databind.ser.jdk.JDKTypeSerializationTest"
+        }
+      ],
+      "extra_java21_classes": [],
+      "build_command": "./mvnw -B -ff -ntp verify",
+      "build_step": {
+        "name": "Build",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-10-18T15:08:39Z",
+        "completed_at": "2026-10-18T15:10:30Z"
+      },
+      "build_success_count": 1,
+      "build_failure": false,
+      "compilation_error": false,
+      "java_distribution": "Temurin",
+      "resolved_java_version": "17.0.20+101",
+      "runner_version": "2.337.0",
+      "os_log_lines": [
+        "2026-10-18T15:08:07.3921890Z Microsoft Windows Server 2025",
+        "2026-10-18T15:08:07.3922965Z 10.0.26100",
+        "2026-10-18T15:08:07.3923961Z Datacenter"
+      ],
+      "image_log_lines": [
+        "2026-10-18T15:08:07.3926279Z Image: windows-2025-vs2026",
+        "2026-10-18T15:08:07.3926846Z Version: 20261007.264.1"
+      ],
+      "checkout_lines": [
+        "2026-10-18T15:08:24.6494136Z [command]\"C:\\Program Files\\Git\\bin\\git.exe\" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +21d5d2915c92b1d3ffdd765567d0b3b2d55e00cf:refs/remotes/pull/6302/merge",
+        "2026-10-18T15:08:26.3716301Z  * [new ref]         21d5d2915c92b1d3ffdd765567d0b3b2d55e00cf -> pull/6302/merge",
+        "2026-10-18T15:08:27.0468431Z 21d5d2915c92b1d3ffdd765567d0b3b2d55e00cf"
+      ],
+      "android_step": {
+        "name": "Verify Android SDK Compatibility",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 7,
+        "started_at": "2026-10-18T15:10:30Z",
+        "completed_at": "2026-10-18T15:10:30Z"
+      },
+      "android_command_log_lines": [],
+      "decoded_codepoints": 261072,
+      "utf8_bom": true,
+      "crlf_count": 1971,
+      "replacement_character_count": 0
+    }
+  ],
+  "skipped_downstream_jobs": [
+    {
+      "id": 117710178535,
+      "name": "Trigger v2 dep builds",
+      "url": "https://github.com/FasterXML/jackson-databind/actions/runs/39138054220/job/117710178535",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-18T15:10:35Z",
+      "completed_at": "2026-10-18T15:10:35Z"
+    },
+    {
+      "id": 117710178712,
+      "name": "Trigger v3 dep builds",
+      "url": "https://github.com/FasterXML/jackson-databind/actions/runs/39138054220/job/117710178712",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-18T15:10:36Z",
+      "completed_at": "2026-10-18T15:10:35Z"
+    }
+  ],
+  "checks": {
+    "total": 7,
+    "github_actions_count": 6,
+    "github_actions_id_set_matches_jobs": true,
+    "records": [
+      {
+        "id": 117710178712,
+        "name": "Trigger v3 dep builds",
+        "app": "github-actions",
+        "url": "https://github.com/FasterXML/jackson-databind/actions/runs/39138054220/job/117710178712",
+        "head": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45",
+        "status": "completed",
+        "conclusion": "skipped"
+      },
+      {
+        "id": 117710178535,
+        "name": "Trigger v2 dep builds",
+        "app": "github-actions",
+        "url": "https://github.com/FasterXML/jackson-databind/actions/runs/39138054220/job/117710178535",
+        "head": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45",
+        "status": "completed",
+        "conclusion": "skipped"
+      },
+      {
+        "id": 117709603036,
+        "name": "build (17, windows-latest, W)",
+        "app": "github-actions",
+        "url": "https://github.com/FasterXML/jackson-databind/actions/runs/39138054220/job/117709603036",
+        "head": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 117709603004,
+        "name": "build (25, ubuntu-24.04)",
+        "app": "github-actions",
+        "url": "https://github.com/FasterXML/jackson-databind/actions/runs/39138054220/job/117709603004",
+        "head": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 117709602933,
+        "name": "build (21, ubuntu-24.04)",
+        "app": "github-actions",
+        "url": "https://github.com/FasterXML/jackson-databind/actions/runs/39138054220/job/117709602933",
+        "head": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 117709602754,
+        "name": "build (17, ubuntu-24.04)",
+        "app": "github-actions",
+        "url": "https://github.com/FasterXML/jackson-databind/actions/runs/39138054220/job/117709602754",
+        "head": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 117706532128,
+        "name": "Gitar",
+        "app": "gitar-bot",
+        "url": "https://app.gitar.ai",
+        "head": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ],
+    "distinction": "Six GitHub Actions checks correspond to the six actual jobs. The seventh check is the earlier successful Gitar automated review and is not a build job."
+  },
+  "legacy_commit_status": {
+    "state": "pending",
+    "total_count": 0,
+    "statuses": [],
+    "interpretation": "The legacy commit-status API returns pending for an empty zero-status collection. This is distinct from the completed successful workflow and check-run records; no pending actual build job was observed."
+  },
+  "aggregate_reconciliation": {
+    "jdk17": {
+      "classes": 770,
+      "tests": 5883,
+      "failures": 0,
+      "errors": 0,
+      "skips": 1
+    },
+    "jdk21_and_25": {
+      "classes": 771,
+      "tests": 5885,
+      "failures": 0,
+      "errors": 0,
+      "skips": 1
+    },
+    "per_job_contribution": {
+      "original_tests": 53,
+      "compatibility_tests": 21,
+      "total": 74,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    "extra_java21_class": "tools.jackson.databind.jdk21.Java21CollectionsTest (2 passing tests)",
+    "sole_skipped_class": "tools.jackson.databind.ser.jdk.JDKTypeSerializationTest (40 tests, 1 skip)",
+    "all_class_sums_reconcile": true
+  },
+  "android": {
+    "job_id": 117709602754,
+    "url": "https://github.com/FasterXML/jackson-databind/actions/runs/39138054220/job/117709602754",
+    "step": "Verify Android SDK Compatibility",
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-10-18T15:09:44Z",
+    "completed_at": "2026-10-18T15:09:48Z",
+    "actual_command": "./mvnw -B -q -ff -ntp -DskipTests animal-sniffer:check",
+    "other_three_steps": "skipped",
+    "scope": "Observed Animal Sniffer API compatibility check; no Android device or emulator execution is claimed."
+  },
+  "coverage_comment": {
+    "id": 6251505409,
+    "url": "https://github.com/FasterXML/jackson-databind/pull/6302#issuecomment-6251505409",
+    "author": "github-actions[bot]",
+    "author_type": "Bot",
+    "created_at": "2026-10-18T15:10:49Z",
+    "updated_at": "2026-10-18T15:10:49Z",
+    "interpretation": "Automated coverage report from github-actions[bot], not human review or approval. Its percentages are preserved as bot-reported figures and not independently recomputed by this audit."
+  },
+  "historical_gate": {
+    "observed_window_utc": {
+      "start": "2026-10-18T14:56:13Z",
+      "end": "2026-10-18T14:56:43Z"
+    },
+    "same_run_id": 39138054220,
+    "earlier_attempt": 1,
+    "earlier_conclusion": "action_required",
+    "earlier_actual_jobs": 0,
+    "portable_receipt_sha256": "aa832a804ef1848a3127c972622c49d5c4c2fff25f50f61aab5e14775416d02b",
+    "relationship": "The earlier gate remains a historical observation. Current attempt 2 supplies new completed execution evidence; the earlier receipt is not rewritten.",
+    "admission_actor_or_cause": "Not independently established by this audit."
+  },
+  "provenance": {
+    "material": "Only public upstream API records, public job logs, immutable previously verified Git Data and audit metadata.",
+    "log_format": "Full connector-returned decoded Unicode text encoded as UTF-8, preserving BOM and returned LF/CRLF.",
+    "metadata_format": "Parsed public GitHub API response objects serialized as JSON.",
+    "original_http_transport_bytes_available": false,
+    "auditor_normalized_or_redacted_logs": false,
+    "hash_semantics": "SHA256 of saved decoded-text UTF-8 bytes or saved JSON representations, not original HTTP transport bytes.",
+    "private_browser_native_automation_or_account_state_included": false
+  },
+  "limits": [
+    "The successful matrix does not establish maintainer approval, merge, issue closure, payment or reward eligibility. The PR was open and unmerged when observed.",
+    "The audit did not trigger, rerun or admit this workflow; it observed attempt 2 after completion.",
+    "Maven runtime version was not printed and is not inferred from project/plugin versions.",
+    "Snapshot dependency artifact hashes were not captured or pinned.",
+    "The exact source tree and tested platforms define the execution scope; broader behavior is not claimed.",
+    "No source edit, upstream comment, remote publication or other external mutation was performed by this audit."
+  ],
+  "artifact_manifest": [
+    {
+      "file": "checks.json",
+      "bytes": 29520,
+      "sha256": "63adbfc7f0d7ec2f2224cff76c8d94ce6bb4d6cc60f9ec097af026ae11ebb997"
+    },
+    {
+      "file": "coverage-comment.json",
+      "bytes": 5322,
+      "sha256": "88be6345fdf00c7e6c019b9ff94db3aaeb4f58dbc15e0a9c4094fccd008aec10"
+    },
+    {
+      "file": "job-117709602754.log",
+      "bytes": 283167,
+      "sha256": "4df19d52077b5d4685c62fc7db20ed91beb9d98a88a53e12184522de8b62cb67"
+    },
+    {
+      "file": "job-117709602933.log",
+      "bytes": 269471,
+      "sha256": "863d26eedbe314f39c3aa77729aeec930356483c7418792851f0e30e53c38586"
+    },
+    {
+      "file": "job-117709603004.log",
+      "bytes": 270621,
+      "sha256": "ca49fe0459a3b5750d1a6cffe8f66c334e88b96087172bd74f390b5ec7908ab8"
+    },
+    {
+      "file": "job-117709603036.log",
+      "bytes": 261074,
+      "sha256": "7e3bce09306685ff4d096973dc8c757df96f8adbdb7ee0a8488550322c97b808"
+    },
+    {
+      "file": "jobs.json",
+      "bytes": 25727,
+      "sha256": "ef4efbe583c87c3553576b9d19706ffbca6d372586c64446fda13f696101520b"
+    },
+    {
+      "file": "observation.json",
+      "bytes": 460,
+      "sha256": "e6208f1f97526fdb18cb9c7dfdb063377e8dd1969d91c6d354171819ba747fe5"
+    },
+    {
+      "file": "run.json",
+      "bytes": 14821,
+      "sha256": "4ab989a270b8241d53ec6d90bdd8a8d3c797afd8160c5ed1f1e2f90ae8dfa2b9"
+    },
+    {
+      "file": "source-identities.json",
+      "bytes": 28089,
+      "sha256": "e15329a06356542dbfa4175aff60bcc15fe2cf10786d0d3f9ae37abc6a7fb709"
+    },
+    {
+      "file": "status.json",
+      "bytes": 5356,
+      "sha256": "c2c7d4e47e114d088ad0ad93ed2738bd3761a85c0f3af248faf5494a198b4d3e"
+    }
+  ],
+  "historical_gate_receipt_unchanged": true,
+  "saved_files_verified": true,
+  "finalized_at_utc": "2026-10-18T15:16:37.592473+00:00",
+  "packet_context": {
+    "assembled_at_utc": "2026-10-18T15:21:22.854531+00:00",
+    "status": "complete_upstream_execution_supplement_prepared_locally",
+    "audit_representation": "The completed portable audit is reproduced here with this packaging context appended. Its original saved JSON bytes remain unchanged at the archive path below.",
+    "original_audit_archive_path": "upstream-hosted/audit.json",
+    "original_audit_sha256": "36f35150b93a0bbb631424f97876a11452e761a394b0696316f73aad472b9fa1",
+    "artifact_manifest_root_in_archive": "upstream-hosted/",
+    "historical_receipt": {
+      "file": "history/upstream-observation-1456.json",
+      "bytes": 71592,
+      "sha256": "aa832a804ef1848a3127c972622c49d5c4c2fff25f50f61aab5e14775416d02b"
+    },
+    "original_packet": {
+      "commit": "3e832d88429ddd257b144fb1a811eebb3a3a91e2",
+      "tree": "29ec664e9fe6f25c605f1e13678dc303aef62476",
+      "parent_source_commit": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45",
+      "index_url": "https://github.com/agamal026/jackson-databind/blob/3e832d88429ddd257b144fb1a811eebb3a3a91e2/contribution-review/6299/3.1-followup/README.md",
+      "publication_manifest": {
+        "file": "history/original-packet-publication.json",
+        "bytes": 6972,
+        "sha256": "940022e1d552e6e47945aeed028e9c2bae9c47106af3ac39c76b78d5815eb981"
+      },
+      "original_16_public_files_verified_unchanged": true,
+      "original_archive_sha256": "7d6924376c82ccb8482b2fdb4d59e3cac2190545c8a08a3439c643c7eb74d7a4"
+    },
+    "publication_target": {
+      "repository": "agamal026/jackson-databind",
+      "branch": "evidence/6299-3.1-followup",
+      "intended_parent_commit": "3e832d88429ddd257b144fb1a811eebb3a3a91e2",
+      "intended_parent_tree": "29ec664e9fe6f25c605f1e13678dc303aef62476",
+      "mode": "Separate evidence directory; original packet retained; publication performed separately by the implementation owner."
+    },
+    "archive": {
+      "file": "jackson-6299-3.1-upstream-evidence.tar.gz",
+      "checksum_file": "jackson-6299-3.1-upstream-evidence.tar.gz.sha256",
+      "payload_manifest": "SHA256SUMS",
+      "payload_manifest_requires_extraction": true
+    },
+    "provenance_note": "All source audit/log/metadata files and the historical receipt were copied as saved bytes, without edits or normalization. SHA-256 values describe saved UTF-8 or JSON representations, not original HTTP transport bytes.",
+    "assembler_scope": {
+      "implementation_edits": false,
+      "tests_executed": false,
+      "workflow_trigger_rerun_or_admission": false,
+      "remote_publication": false,
+      "human_review_claimed": false
+    },
+    "cla_status": "unverified",
+    "upstream_acceptance_established": false,
+    "earnings_established": false
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "status": "ready_for_root_publication",
+  "prepared_at_utc": "2026-10-18T15:21:22.854531+00:00",
+  "repository": "agamal026/jackson-databind",
+  "branch": "evidence/6299-3.1-followup",
+  "intended_parent_commit": "3e832d88429ddd257b144fb1a811eebb3a3a91e2",
+  "intended_parent_tree": "29ec664e9fe6f25c605f1e13678dc303aef62476",
+  "publication_directory": "contribution-review/6299/3.1-upstream",
+  "original_packet_directory": "contribution-review/6299/3.1-followup",
+  "original_packet_commit": "3e832d88429ddd257b144fb1a811eebb3a3a91e2",
+  "original_packet_files_changed": false,
+  "source_commit": "38261628a27c109e6e49c916cdb0f7e8bf7bbf45",
+  "source_tree": "861d2292ae59d0c91fd3b572cd044212e2580c00",
+  "upstream_merge_checkout": "21d5d2915c92b1d3ffdd765567d0b3b2d55e00cf",
+  "upstream_workflow_url": "https://github.com/FasterXML/jackson-databind/actions/runs/39138054220",
+  "upstream_workflow_attempt": 2,
+  "direct_publication_paths": [
+    "README.md",
+    "VALIDATION.json",
+    "jackson-6299-3.1-upstream-evidence.tar.gz",
+    "jackson-6299-3.1-upstream-evidence.tar.gz.sha256",
+    "PUBLICATION.json"
+  ],
+  "direct_public_files": [
+    {
+      "path": "README.md",
+      "bytes": 8394,
+      "sha256": "211c21da5e74efa44c975ef665226d5e3dfbc527f28782f872affc47776d2a88"
+    },
+    {
+      "path": "VALIDATION.json",
+      "bytes": 28341,
+      "sha256": "507e3067364aea3102d509f8718446eb74aa518fdf09d03669445156366a917f"
+    },
+    {
+      "path": "jackson-6299-3.1-upstream-evidence.tar.gz",
+      "bytes": 169768,
+      "sha256": "a1cac99dd956709aaa7f9cc29b0b1bc61b9e6a61b4a4faff56528b8e3c391572"
+    },
+    {
+      "path": "jackson-6299-3.1-upstream-evidence.tar.gz.sha256",
+      "bytes": 108,
+      "sha256": "f685debefdc9ad4e162d4b2c0f6ed8206e553604a546d4e83662db193e3c10c4"
+    }
+  ],
+  "self_file": {
+    "path": "PUBLICATION.json",
+    "sha256": "Supplied separately in the handoff; excluded here and from the archive to avoid recursive hashing."
+  },
+  "archive": {
+    "path": "jackson-6299-3.1-upstream-evidence.tar.gz",
+    "bytes": 169768,
+    "sha256": "a1cac99dd956709aaa7f9cc29b0b1bc61b9e6a61b4a4faff56528b8e3c391572",
+    "payload_file_count": 16,
+    "archive_entries_including_manifest": 17,
+    "complete_decoded_job_logs": 4,
+    "includes_earlier_action_required_receipt": true,
+    "payload_manifest": "SHA256SUMS",
+    "payload_manifest_requires_extraction": true
+  },
+  "source_audit_sha256": "36f35150b93a0bbb631424f97876a11452e761a394b0696316f73aad472b9fa1",
+  "historical_gate_sha256": "aa832a804ef1848a3127c972622c49d5c4c2fff25f50f61aab5e14775416d02b",
+  "archive_only_paths": [
+    "SHA256SUMS",
+    "history/original-packet-publication.json",
+    "history/upstream-observation-1456.json",
+    "upstream-hosted/audit.json",
+    "upstream-hosted/checks.json",
+    "upstream-hosted/coverage-comment.json",
+    "upstream-hosted/job-117709602754.log",
+    "upstream-hosted/job-117709602933.log",
+    "upstream-hosted/job-117709603004.log",
+    "upstream-hosted/job-117709603036.log",
+    "upstream-hosted/jobs.json",
+    "upstream-hosted/observation.json",
+    "upstream-hosted/run.json",
+    "upstream-hosted/source-identities.json",
+    "upstream-hosted/status.json"
+  ],
+  "integrity": {
+    "all_audit_input_manifest_hashes_verified": true,
+    "all_archived_payload_bytes_preserved": true,
+    "all_published_markdown_links_resolve": true,
+    "original_16_public_files_unchanged": true,
+    "original_archive_sha256": "7d6924376c82ccb8482b2fdb4d59e3cac2190545c8a08a3439c643c7eb74d7a4"
+  },
+  "actions": {
+    "source_changes": false,
+    "test_execution_by_packet_assembler": false,
+    "workflow_trigger_rerun_or_admission": false,
+    "commit_or_publication_performed": false,
+    "human_review_claimed": false
+  }
+}
