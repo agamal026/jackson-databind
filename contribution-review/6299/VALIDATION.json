@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "prepared_at": "2026-10-18T12:00:55.667664+00:00",
+  "issue_url": "https://github.com/FasterXML/jackson-databind/issues/6299",
+  "source_url": "https://github.com/agamal026/jackson-databind/commit/de533c218b30a86ac9e74a6627b7224c2a0d2987",
+  "source": {
+    "head_sha": "de533c218b30a86ac9e74a6627b7224c2a0d2987",
+    "base_sha": "d2d5526ee317cbc0300c29e3257a6e9690774d96",
+    "tree": "d9550ccd43d7acf13d6e5405728c3f155a53a1df",
+    "changed_files": 10,
+    "added_lines": 394,
+    "removed_lines": 0,
+    "patch_file": "source/jackson-databind-6299.patch",
+    "patch_sha256": "4e92003969feedb3df738bb4544a0cbf6e41a1f7d3e74c49f7fbc1a59e34efd8",
+    "file_hash_semantics": "SHA-256 of exact Git file bytes at final head, independently matched with clean final source checkout. Git blob IDs separately identify Git objects. Source files are available at the source commit; the archive contains the complete patch.",
+    "files": [
+      {
+        "path": "src/main/java/tools/jackson/databind/ser/jdk/CollectionSerializer.java",
+        "bytes": 11920,
+        "sha256": "b1a617bdf689ccdc4acb53dceb444eeefb73f4b132ef3f8116390ef4b59d98a6",
+        "git_blob": "1488c0c5566dccc5801bfd72d0729b8ea3246e75"
+      },
+      {
+        "path": "src/main/java/tools/jackson/databind/ser/jdk/EnumSetSerializer.java",
+        "bytes": 4383,
+        "sha256": "c80d74ae8d14a73c48434de6879a0be5a7e5d493117b308e3406832c3f9449e3",
+        "git_blob": "b25df4d5d28c1bbc5f9a7f15912c2119be18b15b"
+      },
+      {
+        "path": "src/main/java/tools/jackson/databind/ser/jdk/IndexedListSerializer.java",
+        "bytes": 9542,
+        "sha256": "3ad2b31f959872ad00fdc514225aaf8e4c090eb23560c0904512cb5ba4d424d3",
+        "git_blob": "ddc0e0c4766e96a116b645b5248a8533ca38102d"
+      },
+      {
+        "path": "src/main/java/tools/jackson/databind/ser/jdk/IndexedStringListSerializer.java",
+        "bytes": 6154,
+        "sha256": "ea9449910f18e0984dc9d5c50e1850506cde7bd7c2b8da1bbc50fb8319b7d9be",
+        "git_blob": "e0d25195f1dd605cf6bf556f7c9ef8dd7eb6f295"
+      },
+      {
+        "path": "src/main/java/tools/jackson/databind/ser/jdk/IterableSerializer.java",
+        "bytes": 6361,
+        "sha256": "749ee873a53d17411523c98828eb84f78718412dc2ef81215d504139b2f3abd9",
+        "git_blob": "7496c4114b69fc3c1155ea83a9dc9561e525c029"
+      },
+      {
+        "path": "src/main/java/tools/jackson/databind/ser/jdk/JDKArraySerializers.java",
+        "bytes": 37169,
+        "sha256": "9795a23cced5ef571589b364f539d38337420f011ebbed3b5beec02ae7e6b888",
+        "git_blob": "580013330ad8346abc75cb1493e62d4e8759217a"
+      },
+      {
+        "path": "src/main/java/tools/jackson/databind/ser/jdk/ObjectArraySerializer.java",
+        "bytes": 21413,
+        "sha256": "c2327bdd50990fbefe3e6a04acc25c0c13a32b0b12b6eb654c1785071c75d36f",
+        "git_blob": "7987a90e7f41de5f92b62f97007a6748acc253ab"
+      },
+      {
+        "path": "src/main/java/tools/jackson/databind/ser/jdk/StringArraySerializer.java",
+        "bytes": 12444,
+        "sha256": "f0c3ab310687c99baecdf598eab5814312afa1735ab05d73094b903bf4b633d6",
+        "git_blob": "e226385ebabe8b4db9b76fa8a86a229e4d0f6b78"
+      },
+      {
+        "path": "src/main/java/tools/jackson/databind/ser/jdk/StringCollectionSerializer.java",
+        "bytes": 6594,
+        "sha256": "394a3afc575743e5cbafc3ddee04ebffdba211e6905bdb8acfdf0c50d03a414a",
+        "git_blob": "f2e6101e34472a907d9ace80383b0b85faeb49f6"
+      },
+      {
+        "path": "src/test/java/tools/jackson/databind/ser/filter/JsonIncludeUnwrappedContainer6299Test.java",
+        "bytes": 12917,
+        "sha256": "173bca7131ff03859d7d7d55dc80a10824d740467ee45d3ded4c14d33829e185",
+        "git_blob": "fe6aec0b8143469a843a3097918b992391fc82da"
+      }
+    ],
+    "test_revisions": [
+      {
+        "stage": "corrected_baseline",
+        "commit": "342f5dbae53a7b44ec7327fd6def30808f8a1047",
+        "path": "src/test/java/tools/jackson/databind/ser/filter/JsonIncludeUnwrappedContainer6299Test.java",
+        "bytes": 10783,
+        "sha256": "e47097b39c83f59db10bbbea30db6489ab0eae10214ec6837acbf5ee1a38061b",
+        "git_blob": "fe002d0b3ae68414ff971949ab02b1e7434d2e8a"
+      },
+      {
+        "stage": "exception_baseline",
+        "commit": "3da7256ce0a33801c7cc9166304c1fb9ec47f66e",
+        "path": "src/test/java/tools/jackson/databind/ser/filter/JsonIncludeUnwrappedContainer6299Test.java",
+        "bytes": 12917,
+        "sha256": "173bca7131ff03859d7d7d55dc80a10824d740467ee45d3ded4c14d33829e185",
+        "git_blob": "fe6aec0b8143469a843a3097918b992391fc82da"
+      },
+      {
+        "stage": "final",
+        "commit": "de533c218b30a86ac9e74a6627b7224c2a0d2987",
+        "path": "src/test/java/tools/jackson/databind/ser/filter/JsonIncludeUnwrappedContainer6299Test.java",
+        "bytes": 12917,
+        "sha256": "173bca7131ff03859d7d7d55dc80a10824d740467ee45d3ded4c14d33829e185",
+        "git_blob": "fe6aec0b8143469a843a3097918b992391fc82da"
+      }
+    ]
+  },
+  "canonical_merge_readback": {
+    "provenance": "Git Data readback verified by the coordinating agent; this packaging audit independently verifies recorded checkout SHA from logs and the clean local final source tree.",
+    "final": {
+      "sha": "ffdc7267fb85cc13bdf946840a2623ab898e0d35",
+      "tree": "d9550ccd43d7acf13d6e5405728c3f155a53a1df",
+      "parents": [
+        "d2d5526ee317cbc0300c29e3257a6e9690774d96",
+        "de533c218b30a86ac9e74a6627b7224c2a0d2987"
+      ]
+    },
+    "corrected_baseline": {
+      "sha": "f5f09dc8a43089bb4fa5a391b0ff5c76a0e66bf2",
+      "tree": "454f33a11b0f2b06870b9e2644cee64de44d17af",
+      "parents": [
+        "d2d5526ee317cbc0300c29e3257a6e9690774d96",
+        "342f5dbae53a7b44ec7327fd6def30808f8a1047"
+      ]
+    }
+  },
+  "stages": {
+    "corrected_baseline": {
+      "head_sha": "342f5dbae53a7b44ec7327fd6def30808f8a1047",
+      "run_url": "https://github.com/agamal026/jackson-databind/actions/runs/39124036186",
+      "new_test_class_expected": {
+        "tests": 48,
+        "failures": 1,
+        "errors": 32,
+        "skipped": 0
+      },
+      "audit_file": "baseline-hosted/audit.json"
+    },
+    "exception_baseline": {
+      "run_id": 39124541594,
+      "head_sha": "3da7256ce0a33801c7cc9166304c1fb9ec47f66e",
+      "actual_checkout_merge_sha": "16e6738a615d0e4a97dc2d058949aa6efb80aa91",
+      "job_id": 117666801298,
+      "job_url": "https://github.com/agamal026/jackson-databind/actions/runs/39124541594/job/117666801298",
+      "java_version_from_setup": "21.0.12+1",
+      "new_test_class": {
+        "tests": 53,
+        "failures": 5,
+        "errors": 0,
+        "skipped": 0,
+        "line": 563,
+        "class": "tools.jackson.databind.ser.filter.JsonIncludeUnwrappedContainer6299Test"
+      },
+      "aggregate": {
+        "tests": 7576,
+        "failures": 5,
+        "errors": 0,
+        "skipped": 1,
+        "line": 2687
+      },
+      "class_summaries_count": 1081,
+      "class_sums_equal_aggregate": true,
+      "only_failing_class_is_6299": true,
+      "failure_summary": [
+        "[ERROR]   JsonIncludeUnwrappedContainer6299Test.contentFilterException:263 Unexpected exception type thrown, expected: <tools.jackson.databind.DatabindException> but was: <java.lang.IllegalStateException>",
+        "[ERROR]   JsonIncludeUnwrappedContainer6299Test.contentFilterException:263 Unexpected exception type thrown, expected: <tools.jackson.databind.DatabindException> but was: <java.lang.IllegalStateException>",
+        "[ERROR]   JsonIncludeUnwrappedContainer6299Test.contentFilterException:263 Unexpected exception type thrown, expected: <tools.jackson.databind.DatabindException> but was: <java.lang.IllegalStateException>",
+        "[ERROR]   JsonIncludeUnwrappedContainer6299Test.contentFilterException:263 Unexpected exception type thrown, expected: <tools.jackson.databind.DatabindException> but was: <java.lang.IllegalStateException>",
+        "[ERROR]   JsonIncludeUnwrappedContainer6299Test.contentFilterException:263 Unexpected exception type thrown, expected: <tools.jackson.databind.DatabindException> but was: <java.lang.IllegalStateException>"
+      ],
+      "decoded_log": {
+        "file": "exception-baseline/job-117666801298.log",
+        "bytes": 370628,
+        "sha256": "6837016e20ef02915c5d91192525893aba0e94c04bc925d405f2209ad6357ce9",
+        "format": "LF-normalized decoded public job log; original transport bytes unavailable."
+      }
+    },
+    "final": {
+      "head_sha": "de533c218b30a86ac9e74a6627b7224c2a0d2987",
+      "run_url": "https://github.com/agamal026/jackson-databind/actions/runs/39124679661",
+      "new_test_class_expected": {
+        "tests": 53,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "audit_file": "final-hosted/audit.json"
+    }
+  },
+  "review": {
+    "file": "AUTOMATED_REVIEW.md",
+    "sha256": "aa17abf2a68845c87b861bb37301fa59f4ac2f8cf049446a1e2d36a3d98d7d71",
+    "kind": "AI-assisted implementation with separate independent automated source review and independent hosted-log audit. No personal human review is claimed.",
+    "copy_matches_original": true
+  },
+  "limits": [
+    "Only the recorded hosted runs are execution evidence. A local build encountered dependency-host DNS resolution failure; its raw local log is excluded.",
+    "Decoded logs are retained, not original HTTP transport bytes. The exception log was LF-normalized. Baseline Windows replacement characters were already present in the decoded tool response.",
+    "Maven runtime version was not printed by these logs. Maven snapshot dependency artifact hashes were not pinned or captured. Exact source hashes do not pin dependency bytes.",
+    "Android compatibility is a successful quiet animal-sniffer step on Linux JDK 17, not Android device or emulator execution.",
+    "Automated review does not establish human review, upstream submission or acceptance, reward eligibility or payment, or CLA acceptance."
+  ],
+  "archive_manifest": {
+    "file": "SHA256SUMS",
+    "scope": "SHA-256 covers every other archive entry; SHA256SUMS excludes itself to avoid a self-referential hash. The archive SHA-256 is reported externally.",
+    "path_policy": "Only the explicit curated allowlist is permitted; no absolute or parent-traversal entry paths."
+  }
+}
