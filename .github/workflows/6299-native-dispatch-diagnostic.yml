@@ -1,0 +1,47 @@
+name: Isolated Jackson 6299 native dispatch diagnostic
+on:
+  push:
+    branches: [verify/6299-dispatch-native-20261031]
+permissions:
+  contents: read
+jobs:
+  compare:
+    if: github.repository == 'agamal026/jackson-databind'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Read diagnostic sources
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          path: diagnostic
+          persist-credentials: false
+      - name: Read original production baseline
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          ref: 5d64697ef018099e3d5f951668752ec9d4ffabf9
+          path: baseline
+          persist-credentials: false
+      - name: Read frozen JVM-validated candidate
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          ref: 1250e4720c2b04f67cb371dc41d0446fefaf3ff1
+          path: candidate
+          persist-credentials: false
+      - name: Set up GraalVM Community (no download-service account)
+        uses: graalvm/setup-graalvm@f70bc8032f90a104502824a54bcb94b6f01715bc
+        with:
+          java-version: '25.0.1'
+          distribution: graalvm-community
+          check-for-updates: 'false'
+          native-image-pr-reports: 'false'
+          native-image-enable-sbom: 'false'
+      - name: Compare identical dispatch probes with baseline-only metadata
+        run: bash diagnostic/contribution-review/6299/native-dispatch/run.sh
+      - name: Preserve diagnostic evidence even on failure
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: jackson-6299-native-dispatch-evidence
+          path: evidence/
+          retention-days: 14
+          if-no-files-found: warn
