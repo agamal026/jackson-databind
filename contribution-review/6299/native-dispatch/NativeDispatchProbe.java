@@ -206,24 +206,47 @@ public class NativeDispatchProbe
         }
     }
 
+    void builtInDefaultContentsProducesEmptyArray() {
+        ObjectWriter writer = JsonMapper.builder()
+                .changeDefaultPropertyInclusion(ignored -> JsonInclude.Value.construct(
+                        JsonInclude.Include.ALWAYS, JsonInclude.Include.NON_EMPTY))
+                .enable(SerializationFeature.APPLY_JSON_INCLUDE_FOR_CONTAINERS,
+                        SerializationFeature.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED)
+                .build().writerFor(new TypeReference<Iterable<String>>() { });
+        Iterable<String> value = () -> List.of("").iterator();
+        assertEquals(corrected ? "[]" : "", writer.writeValueAsString(value));
+    }
+
+    private void runCase(String name) {
+        System.out.println("CASE " + name);
+        switch (name) {
+        case "custom-empty": customOnlyDelegatesRetainsLegacyEmptyOutput(); break;
+        case "custom-suffix": customSuffixIsNotPrefixedWithAnEmptyArray(); break;
+        case "inherited-custom": inheritedCustomOverrideRetainsOwnership(); break;
+        case "inherited-empty": inheritedDefaultContentsProducesEmptyArray(); break;
+        case "inherited-kept": inheritedDefaultContentsKeepsScalar(); break;
+        case "filtering-disabled": inheritedDefaultContentsWithFilteringDisabledKeepsEmptyString(); break;
+        case "builtin-empty": builtInDefaultContentsProducesEmptyArray(); break;
+        default: throw new IllegalArgumentException("Unknown case: " + name);
+        }
+        System.out.println("PASS " + (corrected ? "candidate" : "baseline") + " " + name);
+    }
+
     public static void main(String[] args) {
-        if (args.length != 1 || !(args[0].equals("baseline") || args[0].equals("candidate"))) {
-            throw new IllegalArgumentException("Expected baseline or candidate");
+        if ((args.length != 1 && args.length != 2)
+                || !(args[0].equals("baseline") || args[0].equals("candidate"))) {
+            throw new IllegalArgumentException("Expected baseline or candidate, optionally a case name");
         }
         corrected = args[0].equals("candidate");
         NativeDispatchProbe test = new NativeDispatchProbe();
-        System.out.println("CASE customOnlyDelegatesRetainsLegacyEmptyOutput");
-        test.customOnlyDelegatesRetainsLegacyEmptyOutput();
-        System.out.println("CASE customSuffixIsNotPrefixedWithAnEmptyArray");
-        test.customSuffixIsNotPrefixedWithAnEmptyArray();
-        System.out.println("CASE inheritedCustomOverrideRetainsOwnership");
-        test.inheritedCustomOverrideRetainsOwnership();
-        System.out.println("CASE inheritedDefaultContentsProducesEmptyArray");
-        test.inheritedDefaultContentsProducesEmptyArray();
-        System.out.println("CASE inheritedDefaultContentsKeepsScalar");
-        test.inheritedDefaultContentsKeepsScalar();
-        System.out.println("CASE inheritedDefaultContentsWithFilteringDisabledKeepsEmptyString");
-        test.inheritedDefaultContentsWithFilteringDisabledKeepsEmptyString();
-        System.out.println("PASS " + args[0] + " 6/6 dispatch cases");
+        if (args.length == 2) {
+            test.runCase(args[1]);
+            return;
+        }
+        for (String name : new String[] { "custom-empty", "custom-suffix", "inherited-custom",
+                "inherited-empty", "inherited-kept", "filtering-disabled", "builtin-empty" }) {
+            test.runCase(name);
+        }
+        System.out.println("PASS " + args[0] + " 7/7 dispatch cases");
     }
 }
