@@ -1,0 +1,176 @@
+{
+  "issue": "https://github.com/FasterXML/jackson-databind/issues/6299",
+  "owned_draft": "https://github.com/agamal026/jackson-databind/pull/8",
+  "upstream_pr": "https://github.com/FasterXML/jackson-databind/pull/6302",
+  "source": "b24dbb93b0a10dbd04cbe211c9fb07cc76a3fae4",
+  "tree": "3194dde3792105bfcb47afac0a8adc2863a8c204",
+  "parent": "a100335fbabebf261322c37248201e974563dae4",
+  "base": "5d64697ef018099e3d5f951668752ec9d4ffabf9",
+  "hosted_merge": "b765c3b5e11faf40a1ee0c5dcbf616fa66d2be3b",
+  "hosted_merge_tree_equals_source_tree": true,
+  "run": 41236619589,
+  "hosted": [
+    {
+      "job": 124641646653,
+      "environment": "Linux Java 17",
+      "runtime": "Ubuntu 24.04.5; Temurin 17.0.21+9",
+      "command": "./mvnw -B -ff -ntp verify",
+      "reported": 5955,
+      "passed": 5954,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1,
+      "contribution_cases": 146,
+      "contribution_passed": 146,
+      "maven_completed_at": "2026-10-31T19:59:35Z",
+      "static_android_api_check": "passed",
+      "url": "https://github.com/agamal026/jackson-databind/actions/runs/41236619589/job/124641646653"
+    },
+    {
+      "job": 124641646437,
+      "environment": "Windows Java 17",
+      "runtime": "Windows Server 2025; Temurin 17.0.20+101",
+      "command": "./mvnw -B -ff -ntp verify",
+      "reported": 5955,
+      "passed": 5954,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1,
+      "contribution_cases": 146,
+      "contribution_passed": 146,
+      "maven_completed_at": "2026-10-31T20:00:20Z",
+      "static_android_api_check": "not scheduled",
+      "url": "https://github.com/agamal026/jackson-databind/actions/runs/41236619589/job/124641646437"
+    },
+    {
+      "job": 124641646492,
+      "environment": "Linux Java 21",
+      "runtime": "Ubuntu 24.04.5; Temurin 21.0.13+9",
+      "command": "./mvnw -B -ff -ntp verify",
+      "reported": 5957,
+      "passed": 5956,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1,
+      "contribution_cases": 146,
+      "contribution_passed": 146,
+      "maven_completed_at": "2026-10-31T19:59:24Z",
+      "static_android_api_check": "not scheduled",
+      "url": "https://github.com/agamal026/jackson-databind/actions/runs/41236619589/job/124641646492"
+    },
+    {
+      "job": 124641646487,
+      "environment": "Linux Java 25",
+      "runtime": "Ubuntu 24.04.5; Temurin 25.0.5+8",
+      "command": "./mvnw -B -ff -ntp verify",
+      "reported": 5957,
+      "passed": 5956,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1,
+      "contribution_cases": 146,
+      "contribution_passed": 146,
+      "maven_completed_at": "2026-10-31T19:59:32Z",
+      "static_android_api_check": "not scheduled",
+      "url": "https://github.com/agamal026/jackson-databind/actions/runs/41236619589/job/124641646487"
+    }
+  ],
+  "local": {
+    "runtime": "Linux x86_64; OpenJDK 17.0.20; Maven wrapper 3.9.11",
+    "focused": {
+      "reported": 146,
+      "passed": 146,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "prepatch_compatibility_controls": {
+      "reported": 42,
+      "passed": 42,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "previous_marker_same_new_cases": {
+      "reported": 56,
+      "passed": 16,
+      "failures": 26,
+      "errors": 14,
+      "skipped": 0
+    },
+    "first_full_london": {
+      "reported": 5955,
+      "passed": 5952,
+      "failures": 2,
+      "errors": 0,
+      "skipped": 1,
+      "build": "failure"
+    },
+    "baseline_two_dates_london": {
+      "reported": 2,
+      "passed": 0,
+      "failures": 2,
+      "errors": 0,
+      "skipped": 0
+    },
+    "baseline_two_dates_utc": {
+      "reported": 2,
+      "passed": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "full_utc": {
+      "reported": 5955,
+      "passed": 5954,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1,
+      "build": "success",
+      "completed_at": "2026-10-31T19:49:27Z"
+    },
+    "static_android_utc": {
+      "exit_code": 0,
+      "quiet_log_empty": true,
+      "command": "./mvnw -B -q -ff -ntp -DskipTests animal-sniffer:check"
+    },
+    "date_failures": [
+      "MapDeserializationTest.testDateMap",
+      "MapDeserializationTest.testCalendarMap"
+    ],
+    "full_skip": "JDKTypeSerializationTest.test5194",
+    "baseline_scope": "selected controls only; no fresh complete baseline build",
+    "incomplete_attempts": [
+      "prefix-before-proxy.log",
+      "prepatch-date-control.log"
+    ],
+    "initial_resolution_failure": "prefix-before.log; failed before compilation"
+  },
+  "review": {
+    "independent_ai_reviewers": 2,
+    "human_review": false,
+    "production_correction_cycles": 1
+  },
+  "test_accounting": {
+    "original": 53,
+    "compatibility": 21,
+    "traversal": 12,
+    "override": 2,
+    "snapshot": 2,
+    "prefix": 4,
+    "single_pass_filter": 30,
+    "subclass": 22,
+    "marker_mechanism_tests_removed": 5
+  },
+  "limits": [
+    "Fallback applies to owned built-in traversal; subclasses retain historical output behavior, including inherited suppressed-singleton output.",
+    "Subclass hook matrix uses direct configuration; contextualization coverage is not claimed for every subtype.",
+    "Constructed inclusion/snapshot cases are not known downstream incidents.",
+    "Initial London full verification failed; unchanged baseline reproduces both date failures. UTC does not diagnose their precise parsing cause.",
+    "Hosted Linux17 optional baseline-coverage artifact was missing; no coverage-delta claim.",
+    "Static Android API check is not Android device execution.",
+    "Current snapshot dependency bytes were not pinned to historical October18 builds.",
+    "Upstream source is unchanged; access and personal CLA gates remain unresolved; no external acceptance."
+  ],
+  "archive_transformations": "Full decoded log content; UTF-8 BOM removed and CRLF normalized to LF. Local workspace path and runtime proxy name redacted. Raw Surefire environment properties and runtime settings are excluded."
+}

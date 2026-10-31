@@ -1,0 +1,99 @@
+{
+  "files": [
+    {
+      "path": "hosted/job-124641646437.log",
+      "bytes": 260555,
+      "sha256": "eec46d26e2620c356556d87c9584bc74f1708f78f1cf14cdb60cbd32502b765e"
+    },
+    {
+      "path": "hosted/job-124641646487.log",
+      "bytes": 272247,
+      "sha256": "e3f8230095d1852e2f3b55feb5a739f1c80a98b5e9c619f7885d09f28266df63"
+    },
+    {
+      "path": "hosted/job-124641646492.log",
+      "bytes": 270958,
+      "sha256": "986b22d699cf0c27f34c5b11502b2574c706a652e45a4b15590e656221eef1a3"
+    },
+    {
+      "path": "hosted/job-124641646653.log",
+      "bytes": 283776,
+      "sha256": "1931eed29d739ad5f0da913a6195acd447f6f6e09041551be635345127489d60"
+    },
+    {
+      "path": "local/correction-android-utc.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "local/correction-focused-1.log",
+      "bytes": 8805,
+      "sha256": "f448f44bf0ede251ccb4243a62dcd8b447015d8b94c04b5147721b2140d90482"
+    },
+    {
+      "path": "local/correction-focused-2.log",
+      "bytes": 9390,
+      "sha256": "b38f376eaa82c8f3c7dfdb954c2307158dbb9b1c5aeea2cc4dd96bf44f70e499"
+    },
+    {
+      "path": "local/correction-full-verify-utc.log",
+      "bytes": 190706,
+      "sha256": "e12b30034cd68ece4598fc4897698727ec52af7e88a8b86247db99a2c269fada"
+    },
+    {
+      "path": "local/correction-full-verify.log",
+      "bytes": 191663,
+      "sha256": "a7f739c9b0ea4991d05a4dc670f6811cf3d232ec20733d2e5ad95c3abba6cae9"
+    },
+    {
+      "path": "local/marker-regressions.log",
+      "bytes": 83648,
+      "sha256": "18781d89674c1fbb46a902ec5e8b953ca345e12c8086c3b663a9c7817db612a6"
+    },
+    {
+      "path": "local/prefix-before-proxy.log",
+      "bytes": 1100,
+      "sha256": "20cce309fa7c2786cffb3a609e232efe5f8b235fe927d0646208a36857ba8f10"
+    },
+    {
+      "path": "local/prefix-before.log",
+      "bytes": 1946,
+      "sha256": "4fd93009cc2d7e6eab849bf75061eba7eb6794a0b387ca424ea686f59705f6c1"
+    },
+    {
+      "path": "local/prepatch-compatibility.log",
+      "bytes": 8133,
+      "sha256": "3ec36ed2a58fb343814260954c54ac96160a1b44acf5c273449fef63952b4f40"
+    },
+    {
+      "path": "local/prepatch-date-control.log",
+      "bytes": 2088,
+      "sha256": "a7e6f6f944789a17cc4d485fa250fac36104876763b2c8580946810d023226d5"
+    },
+    {
+      "path": "local/prepatch-date-london.log",
+      "bytes": 10337,
+      "sha256": "0c036e9d1d9e2b30efbc181f85f3a5381afd60996a71b64d110c6d11fbd2e157"
+    },
+    {
+      "path": "local/prepatch-date-utc.log",
+      "bytes": 7304,
+      "sha256": "16b2363ba3631a19ad1e38ac7e2e4eca4ff7278f726330fd09f1c66aa9740fc0"
+    },
+    {
+      "path": "local/prepatch-prefix-direct.log",
+      "bytes": 9955,
+      "sha256": "b481cef38164876f02ea63b6702f921cec1f5bb9174dcb26f6081e052dba7954"
+    },
+    {
+      "path": "receipt.json",
+      "bytes": 6043,
+      "sha256": "d56af2edb6fbcd7799ea21950149323450719d5e4726ef23b14d646bb3ab0510"
+    },
+    {
+      "path": "source-manifest.json",
+      "bytes": 3560,
+      "sha256": "66525ac8e1451968a4d56b2376ad7680ef8119be1c1b3295bec39b7e35d41a76"
+    }
+  ]
+}
