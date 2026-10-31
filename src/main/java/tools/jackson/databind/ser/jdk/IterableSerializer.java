@@ -83,11 +83,12 @@ public class IterableSerializer
                 ctxt.isEnabled(SerializationFeature.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED))
                 || (_unwrapSingle == Boolean.TRUE)) {
             if (hasSingleElement(value)) {
-                if (UnwrappedContainerSerializerHelper.writeEmptyArrayIfSuppressed(value, g,
-                        _needToCheckFiltering(ctxt), () -> _isEmptySingleton(ctxt, value))) {
-                    return;
+                if (_needToCheckFiltering(ctxt)) {
+                    UnwrappedContainerSerializerHelper.serializeUnwrapped(this, value, g,
+                            ctxt, () -> serializeContents(value, g, ctxt));
+                } else {
+                    serializeContents(value, g, ctxt);
                 }
-                serializeContents(value, g, ctxt);
                 return;
             }
         }
@@ -96,33 +97,13 @@ public class IterableSerializer
         g.writeEndArray();
     }
 
-    private boolean _isEmptySingleton(SerializationContext ctxt, Iterable<?> value) {
-        Iterator<?> it = value.iterator();
-        if (!it.hasNext()) {
-            return true;
-        }
-        Object elem = it.next();
-        if (elem == null) {
-            return _suppressNulls;
-        }
-        ValueSerializer<Object> serializer = _elementSerializer;
-        if (serializer == null) {
-            Class<?> cc = elem.getClass();
-            serializer = _dynamicValueSerializers.serializerFor(cc);
-            if (serializer == null) {
-                serializer = _elementType.hasGenericTypes()
-                        ? _findAndAddDynamic(ctxt, ctxt.constructSpecializedType(_elementType, cc))
-                        : _findAndAddDynamic(ctxt, cc);
-            }
-        }
-        return !_shouldSerializeElement(ctxt, elem, serializer);
-    }
-
     @Override
     public void serializeContents(Iterable<?> value, JsonGenerator g,
             SerializationContext ctxt)
         throws JacksonException
     {
+        boolean emptyUnwrapped = UnwrappedContainerSerializerHelper.claimUnwrapped(
+                this, value, g, ctxt);
         final boolean needsFiltering = _needToCheckFiltering(ctxt);
         Iterator<?> it = value.iterator();
         if (it.hasNext()) {
@@ -135,6 +116,7 @@ public class IterableSerializer
                     if (needsFiltering && _suppressNulls) {
                         continue;
                     }
+                    emptyUnwrapped = false;
                     ctxt.defaultSerializeNullValue(g);
                     continue;
                 }
@@ -155,12 +137,19 @@ public class IterableSerializer
                 if (needsFiltering && !_shouldSerializeElement(ctxt, elem, serializer)) {
                     continue;
                 }
+                // Retention is semantic: a generator filter or custom element
+                // serializer may intentionally write no output for this value.
+                emptyUnwrapped = false;
                 if (typeSer == null) {
                     serializer.serialize(elem, g, ctxt);
                 } else {
                     serializer.serializeWithType(elem, g, ctxt, typeSer);
                 }
             } while (it.hasNext());
+        }
+        if (emptyUnwrapped) {
+            g.writeStartArray(value, 0);
+            g.writeEndArray();
         }
     }
 }
