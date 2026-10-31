@@ -83,7 +83,12 @@ public class IterableSerializer
                 ctxt.isEnabled(SerializationFeature.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED))
                 || (_unwrapSingle == Boolean.TRUE)) {
             if (hasSingleElement(value)) {
-                serializeContents(value, g, ctxt);
+                if (_needToCheckFiltering(ctxt) && _usesDefaultContents()) {
+                    UnwrappedContainerSerializerHelper.serializeUnwrapped(this, value, g,
+                            ctxt, () -> serializeContents(value, g, ctxt));
+                } else {
+                    serializeContents(value, g, ctxt);
+                }
                 return;
             }
         }
@@ -92,11 +97,34 @@ public class IterableSerializer
         g.writeEndArray();
     }
 
+    /**
+     * A content override owns its output, including values it writes before or
+     * after delegating to super. Only the inherited implementation may claim
+     * the built-in empty-value fallback.
+     */
+    private boolean _usesDefaultContents() {
+        // Avoid reflection for the ordinary, built-in serializer.
+        if (getClass() == IterableSerializer.class) {
+            return true;
+        }
+        try {
+            return getClass().getMethod("serializeContents", Iterable.class,
+                    JsonGenerator.class, SerializationContext.class)
+                    .getDeclaringClass() == IterableSerializer.class;
+        } catch (NoSuchMethodException | SecurityException e) {
+            // If method ownership cannot be established, preserve virtual
+            // dispatch without adding output on behalf of a custom serializer.
+            return false;
+        }
+    }
+
     @Override
     public void serializeContents(Iterable<?> value, JsonGenerator g,
             SerializationContext ctxt)
         throws JacksonException
     {
+        boolean emptyUnwrapped = UnwrappedContainerSerializerHelper.claimUnwrapped(
+                this, value, g, ctxt);
         final boolean needsFiltering = _needToCheckFiltering(ctxt);
         Iterator<?> it = value.iterator();
         if (it.hasNext()) {
@@ -109,6 +137,7 @@ public class IterableSerializer
                     if (needsFiltering && _suppressNulls) {
                         continue;
                     }
+                    emptyUnwrapped = false;
                     ctxt.defaultSerializeNullValue(g);
                     continue;
                 }
@@ -129,12 +158,19 @@ public class IterableSerializer
                 if (needsFiltering && !_shouldSerializeElement(ctxt, elem, serializer)) {
                     continue;
                 }
+                // Retention is semantic: a generator filter or custom element
+                // serializer may intentionally write no output for this value.
+                emptyUnwrapped = false;
                 if (typeSer == null) {
                     serializer.serialize(elem, g, ctxt);
                 } else {
                     serializer.serializeWithType(elem, g, ctxt, typeSer);
                 }
             } while (it.hasNext());
+        }
+        if (emptyUnwrapped) {
+            g.writeStartArray(value, 0);
+            g.writeEndArray();
         }
     }
 }
