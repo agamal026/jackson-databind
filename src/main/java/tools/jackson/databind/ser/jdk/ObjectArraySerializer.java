@@ -263,7 +263,11 @@ public class ObjectArraySerializer
             if (((_unwrapSingle == null) &&
                     ctxt.isEnabled(SerializationFeature.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED))
                     || (_unwrapSingle == Boolean.TRUE)) {
-                serializeContents(value, g, ctxt);
+                if ((getClass() == ObjectArraySerializer.class) && _needToCheckFiltering(ctxt)) {
+                    serializeContents(value, g, ctxt, true);
+                } else {
+                    serializeContents(value, g, ctxt);
+                }
                 return;
             }
         }
@@ -276,16 +280,32 @@ public class ObjectArraySerializer
     public void serializeContents(Object[] value, JsonGenerator g, SerializationContext ctxt)
         throws JacksonException
     {
+        serializeContents(value, g, ctxt, false);
+    }
+
+    private void serializeContents(Object[] value, JsonGenerator g,
+            SerializationContext ctxt, boolean emptyUnwrapped)
+        throws JacksonException
+    {
         final int len = value.length;
         if (len == 0) {
+            UnwrappedContainerSerializerHelper.writeEmptyArrayIfNeeded(value, g, emptyUnwrapped);
             return;
         }
         if (_elementSerializer != null) {
-            serializeContentsUsing(value, g, ctxt, _elementSerializer);
+            if (emptyUnwrapped) {
+                serializeContentsUsing(value, g, ctxt, _elementSerializer, true);
+            } else {
+                serializeContentsUsing(value, g, ctxt, _elementSerializer);
+            }
             return;
         }
         if (_valueTypeSerializer != null) {
-            serializeTypedContents(value, g, ctxt);
+            if (emptyUnwrapped) {
+                serializeTypedContents(value, g, ctxt, true);
+            } else {
+                serializeTypedContents(value, g, ctxt);
+            }
             return;
         }
         final boolean filtered = _needToCheckFiltering(ctxt);
@@ -298,6 +318,7 @@ public class ObjectArraySerializer
                     if (filtered && _suppressNulls) {
                         continue;
                     }
+                    emptyUnwrapped = false;
                     ctxt.defaultSerializeNullValue(g);
                     continue;
                 }
@@ -315,15 +336,24 @@ public class ObjectArraySerializer
                 if (filtered && !_shouldSerializeElement(ctxt, elem, serializer)) {
                     continue;
                 }
+                emptyUnwrapped = false;
                 serializer.serialize(elem, g, ctxt);
             }
         } catch (Exception e) {
             wrapAndThrow(ctxt, e, elem, i);
         }
+        UnwrappedContainerSerializerHelper.writeEmptyArrayIfNeeded(value, g, emptyUnwrapped);
     }
 
     public void serializeContentsUsing(Object[] value, JsonGenerator g,
             SerializationContext ctxt, ValueSerializer<Object> ser)
+        throws JacksonException
+    {
+        serializeContentsUsing(value, g, ctxt, ser, false);
+    }
+
+    private void serializeContentsUsing(Object[] value, JsonGenerator g,
+            SerializationContext ctxt, ValueSerializer<Object> ser, boolean emptyUnwrapped)
         throws JacksonException
     {
         final int len = value.length;
@@ -339,6 +369,7 @@ public class ObjectArraySerializer
                     if (filtered && _suppressNulls) {
                         continue;
                     }
+                    emptyUnwrapped = false;
                     ctxt.defaultSerializeNullValue(g);
                     continue;
                 }
@@ -346,6 +377,7 @@ public class ObjectArraySerializer
                 if (filtered && !_shouldSerializeElement(ctxt, elem, ser)) {
                     continue;
                 }
+                emptyUnwrapped = false;
                 if (typeSer == null) {
                     ser.serialize(elem, g, ctxt);
                 } else {
@@ -355,9 +387,17 @@ public class ObjectArraySerializer
         } catch (Exception e) {
             wrapAndThrow(ctxt, e, elem, i);
         }
+        UnwrappedContainerSerializerHelper.writeEmptyArrayIfNeeded(value, g, emptyUnwrapped);
     }
 
     public void serializeTypedContents(Object[] value, JsonGenerator g, SerializationContext ctxt)
+        throws JacksonException
+    {
+        serializeTypedContents(value, g, ctxt, false);
+    }
+
+    private void serializeTypedContents(Object[] value, JsonGenerator g,
+            SerializationContext ctxt, boolean emptyUnwrapped)
         throws JacksonException
     {
         final int len = value.length;
@@ -372,6 +412,7 @@ public class ObjectArraySerializer
                     if (filtered && _suppressNulls) {
                         continue;
                     }
+                    emptyUnwrapped = false;
                     ctxt.defaultSerializeNullValue(g);
                     continue;
                 }
@@ -384,11 +425,13 @@ public class ObjectArraySerializer
                 if (filtered && !_shouldSerializeElement(ctxt, elem, serializer)) {
                     continue;
                 }
+                emptyUnwrapped = false;
                 serializer.serializeWithType(elem, g, ctxt, typeSer);
             }
         } catch (Exception e) {
             wrapAndThrow(ctxt, e, elem, i);
         }
+        UnwrappedContainerSerializerHelper.writeEmptyArrayIfNeeded(value, g, emptyUnwrapped);
     }
 
     /*

@@ -84,7 +84,7 @@ public final class IndexedStringListSerializer
                     ctxt.isEnabled(SerializationFeature.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED))
                     || (_unwrapSingle == Boolean.TRUE)) {
                 if (_needToCheckFiltering(ctxt)) {
-                    serializeContentsFiltered(value, g, ctxt, 1);
+                    serializeContentsFiltered(value, g, ctxt, 1, true);
 
                 } else {
                     serializeContentsNonFiltered(value, g, ctxt, 1);
@@ -94,7 +94,7 @@ public final class IndexedStringListSerializer
         }
         g.writeStartArray(value, len);
         if (_needToCheckFiltering(ctxt)) {
-            serializeContentsFiltered(value, g, ctxt, len);
+            serializeContentsFiltered(value, g, ctxt, len, false);
         } else {
             serializeContentsNonFiltered(value, g, ctxt, len);
         }
@@ -110,7 +110,7 @@ public final class IndexedStringListSerializer
                 typeSer.typeId(value, JsonToken.START_ARRAY));
         g.assignCurrentValue(value);
         if (_needToCheckFiltering(ctxt)) {
-            serializeContentsFiltered(value, g, ctxt, value.size());
+            serializeContentsFiltered(value, g, ctxt, value.size(), false);
         } else {
             serializeContentsNonFiltered(value, g, ctxt, value.size());
         }
@@ -137,7 +137,7 @@ public final class IndexedStringListSerializer
     }
 
     private final void serializeContentsFiltered(List<String> value, JsonGenerator g,
-            SerializationContext ctxt, int len)
+            SerializationContext ctxt, int len, boolean emptyUnwrapped)
         throws JacksonException
    {
        int i = 0;
@@ -148,19 +148,22 @@ public final class IndexedStringListSerializer
                    if (_suppressNulls) {
                        continue;
                    }
+                   emptyUnwrapped = false;
                    ctxt.defaultSerializeNullValue(g);
                } else {
                    // Check if this element should be suppressed (only in filtered mode)
                    if (!_shouldSerializeElement(str, null, ctxt)) {
                        continue;
                    }
+                   emptyUnwrapped = false;
                    g.writeString(str);
                }
            }
        } catch (Exception e) {
            wrapAndThrow(ctxt, e, value, i);
        }
-   }
+        UnwrappedContainerSerializerHelper.writeEmptyArrayIfNeeded(value, g, emptyUnwrapped);
+    }
 
     protected boolean _needToCheckFiltering(SerializationContext ctxt) {
         return ((_suppressableValue != null) || _suppressNulls)

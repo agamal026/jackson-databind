@@ -83,7 +83,13 @@ public class IterableSerializer
                 ctxt.isEnabled(SerializationFeature.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED))
                 || (_unwrapSingle == Boolean.TRUE)) {
             if (hasSingleElement(value)) {
-                serializeContents(value, g, ctxt);
+                // A custom contents override owns its output, including any
+                // value it writes before delegating to the base implementation.
+                if ((getClass() == IterableSerializer.class) && _needToCheckFiltering(ctxt)) {
+                    serializeContents(value, g, ctxt, true);
+                } else {
+                    serializeContents(value, g, ctxt);
+                }
                 return;
             }
         }
@@ -95,6 +101,13 @@ public class IterableSerializer
     @Override
     public void serializeContents(Iterable<?> value, JsonGenerator g,
             SerializationContext ctxt)
+        throws JacksonException
+    {
+        serializeContents(value, g, ctxt, false);
+    }
+
+    private void serializeContents(Iterable<?> value, JsonGenerator g,
+            SerializationContext ctxt, boolean emptyUnwrapped)
         throws JacksonException
     {
         final boolean needsFiltering = _needToCheckFiltering(ctxt);
@@ -109,6 +122,7 @@ public class IterableSerializer
                     if (needsFiltering && _suppressNulls) {
                         continue;
                     }
+                    emptyUnwrapped = false;
                     ctxt.defaultSerializeNullValue(g);
                     continue;
                 }
@@ -129,6 +143,9 @@ public class IterableSerializer
                 if (needsFiltering && !_shouldSerializeElement(ctxt, elem, serializer)) {
                     continue;
                 }
+                // Retention is semantic: a generator filter or custom element
+                // serializer may intentionally write no output for this value.
+                emptyUnwrapped = false;
                 if (typeSer == null) {
                     serializer.serialize(elem, g, ctxt);
                 } else {
@@ -136,5 +153,6 @@ public class IterableSerializer
                 }
             } while (it.hasNext());
         }
+        UnwrappedContainerSerializerHelper.writeEmptyArrayIfNeeded(value, g, emptyUnwrapped);
     }
 }

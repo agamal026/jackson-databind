@@ -85,7 +85,7 @@ public final class IndexedListSerializer
             if (((_unwrapSingle == null) &&
                     ctxt.isEnabled(SerializationFeature.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED))
                     || (_unwrapSingle == Boolean.TRUE)) {
-                serializeContents(value, g, ctxt);
+                serializeContents(value, g, ctxt, _needToCheckFiltering(ctxt));
                 return;
             }
         }
@@ -98,22 +98,30 @@ public final class IndexedListSerializer
     public void serializeContents(Object value0, JsonGenerator g, SerializationContext ctxt)
         throws JacksonException
     {
+        serializeContents(value0, g, ctxt, false);
+    }
+
+    private void serializeContents(Object value0, JsonGenerator g,
+            SerializationContext ctxt, boolean emptyUnwrapped)
+        throws JacksonException
+    {
         final List<?> value = (List<?>) value0;
         if (_elementSerializer != null) {
-            serializeContentsUsingImpl(value, g, ctxt, _elementSerializer);
+            serializeContentsUsingImpl(value, g, ctxt, _elementSerializer, emptyUnwrapped);
         } else if (_valueTypeSerializer != null) {
-            serializeTypedContentsImpl(value, g, ctxt);
+            serializeTypedContentsImpl(value, g, ctxt, emptyUnwrapped);
         } else {
-            serializeContentsImpl(value, g, ctxt);
+            serializeContentsImpl(value, g, ctxt, emptyUnwrapped);
         }
     }
 
     private void serializeContentsImpl(List<?> value, JsonGenerator g,
-            SerializationContext ctxt)
+            SerializationContext ctxt, boolean emptyUnwrapped)
         throws JacksonException
     {
         final int len = value.size();
         if (len == 0) {
+            UnwrappedContainerSerializerHelper.writeEmptyArrayIfNeeded(value, g, emptyUnwrapped);
             return;
         }
         int i = 0;
@@ -125,6 +133,7 @@ public final class IndexedListSerializer
                     if (filtered && _suppressNulls) {
                         continue;
                     }
+                    emptyUnwrapped = false;
                     ctxt.defaultSerializeNullValue(g);
                 } else {
                     Class<?> cc = elem.getClass();
@@ -141,20 +150,23 @@ public final class IndexedListSerializer
                     if (filtered && !_shouldSerializeElement(ctxt, elem, serializer)) {
                         continue;
                     }
+                    emptyUnwrapped = false;
                     serializer.serialize(elem, g, ctxt);
                 }
             }
         } catch (Exception e) {
             wrapAndThrow(ctxt, e, value, i);
         }
+        UnwrappedContainerSerializerHelper.writeEmptyArrayIfNeeded(value, g, emptyUnwrapped);
     }
 
     private void serializeContentsUsingImpl(List<?> value, JsonGenerator g,
-            SerializationContext ctxt, ValueSerializer<Object> ser)
+            SerializationContext ctxt, ValueSerializer<Object> ser, boolean emptyUnwrapped)
         throws JacksonException
     {
         final int len = value.size();
         if (len == 0) {
+            UnwrappedContainerSerializerHelper.writeEmptyArrayIfNeeded(value, g, emptyUnwrapped);
             return;
         }
         final TypeSerializer typeSer = _valueTypeSerializer;
@@ -166,12 +178,14 @@ public final class IndexedListSerializer
                     if (filtered && _suppressNulls) {
                         continue;
                     }
+                    emptyUnwrapped = false;
                     ctxt.defaultSerializeNullValue(g);
                 } else {
                     // Check if this element should be suppressed (only in filtered mode)
                     if (filtered && !_shouldSerializeElement(ctxt, elem, ser)) {
                         continue;
                     }
+                    emptyUnwrapped = false;
                     if (typeSer == null) {
                         ser.serialize(elem, g, ctxt);
                     } else {
@@ -182,14 +196,16 @@ public final class IndexedListSerializer
                 wrapAndThrow(ctxt, e, value, i);
             }
         }
+        UnwrappedContainerSerializerHelper.writeEmptyArrayIfNeeded(value, g, emptyUnwrapped);
     }
 
     private void serializeTypedContentsImpl(List<?> value, JsonGenerator g,
-            SerializationContext ctxt)
+            SerializationContext ctxt, boolean emptyUnwrapped)
         throws JacksonException
     {
         final int len = value.size();
         if (len == 0) {
+            UnwrappedContainerSerializerHelper.writeEmptyArrayIfNeeded(value, g, emptyUnwrapped);
             return;
         }
         int i = 0;
@@ -203,6 +219,7 @@ public final class IndexedListSerializer
                     if (filtered && _suppressNulls) {
                         continue;
                     }
+                    emptyUnwrapped = false;
                     ctxt.defaultSerializeNullValue(g);
                 } else {
                     Class<?> cc = elem.getClass();
@@ -220,11 +237,13 @@ public final class IndexedListSerializer
                     if (filtered && !_shouldSerializeElement(ctxt, elem, serializer)) {
                         continue;
                     }
+                    emptyUnwrapped = false;
                     serializer.serializeWithType(elem, g, ctxt, typeSer);
                 }
             }
         } catch (Exception e) {
             wrapAndThrow(ctxt, e, value, i);
         }
+        UnwrappedContainerSerializerHelper.writeEmptyArrayIfNeeded(value, g, emptyUnwrapped);
     }
 }

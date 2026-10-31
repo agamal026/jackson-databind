@@ -88,7 +88,7 @@ public class StringCollectionSerializer
                 if (ctxt.isEnabled(SerializationFeature.APPLY_JSON_INCLUDE_FOR_CONTAINERS)
                     && ((_suppressableValue != null) || _suppressNulls)
                 ) {
-                    serializeFilteredContents(value, g, ctxt);
+                    serializeFilteredContents(value, g, ctxt, true);
                 } else {
                     serializeContents(value, g, ctxt);
                 }
@@ -99,7 +99,7 @@ public class StringCollectionSerializer
         if (ctxt.isEnabled(SerializationFeature.APPLY_JSON_INCLUDE_FOR_CONTAINERS)
             && ((_suppressableValue != null) || _suppressNulls)
         ) {
-            serializeFilteredContents(value, g, ctxt);
+            serializeFilteredContents(value, g, ctxt, false);
         } else {
             serializeContents(value, g, ctxt);
         }
@@ -123,19 +123,19 @@ public class StringCollectionSerializer
         throws JacksonException
     {
         serializeContentsImpl(value, g, ctxt,
-            false);
+            false, false);
     }
 
     private final void serializeFilteredContents(Collection<String> value, JsonGenerator g,
-             SerializationContext ctxt)
+             SerializationContext ctxt, boolean emptyUnwrapped)
             throws JacksonException
     {
         serializeContentsImpl(value, g, ctxt,
-                ctxt.isEnabled(SerializationFeature.APPLY_JSON_INCLUDE_FOR_CONTAINERS));
+                ctxt.isEnabled(SerializationFeature.APPLY_JSON_INCLUDE_FOR_CONTAINERS), emptyUnwrapped);
     }
 
     private final void serializeContentsImpl(Collection<String> value, JsonGenerator g,
-             SerializationContext ctxt, boolean filtered)
+             SerializationContext ctxt, boolean filtered, boolean emptyUnwrapped)
             throws JacksonException
     {
         int i = 0;
@@ -147,6 +147,7 @@ public class StringCollectionSerializer
                         ++i;
                         continue;
                     }
+                    emptyUnwrapped = false;
                     ctxt.defaultSerializeNullValue(g);
                 } else {
                     // Check if this element should be suppressed (only in filtered mode)
@@ -154,6 +155,7 @@ public class StringCollectionSerializer
                         ++i;
                         continue;
                     }
+                    emptyUnwrapped = false;
                     g.writeString(str);
                 }
                 ++i;
@@ -161,5 +163,6 @@ public class StringCollectionSerializer
         } catch (Exception e) {
             wrapAndThrow(ctxt, e, value, i);
         }
+        UnwrappedContainerSerializerHelper.writeEmptyArrayIfNeeded(value, g, emptyUnwrapped);
     }
 }
