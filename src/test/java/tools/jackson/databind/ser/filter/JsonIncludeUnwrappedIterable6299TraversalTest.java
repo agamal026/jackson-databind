@@ -281,7 +281,11 @@ class JsonIncludeUnwrappedIterable6299TraversalTest
     }
 
     @Test
-    void aSecondDirectContentsCallDoesNotInheritUnwrapping() { assertReentry(Mode.TWICE, "[]"); }
+    void repeatedCustomContentsCallsRetainLegacyEmptyOutput() {
+        // This override, not the built-in serializer, owns the value's shape.
+        // Two direct contents calls historically emit no suppressed elements.
+        assertReentry(Mode.TWICE, "");
+    }
 
     private void assertReentry(Mode mode, String expected) {
         Probe probe = new Probe(mode);

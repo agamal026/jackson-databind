@@ -83,7 +83,7 @@ public class IterableSerializer
                 ctxt.isEnabled(SerializationFeature.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED))
                 || (_unwrapSingle == Boolean.TRUE)) {
             if (hasSingleElement(value)) {
-                if (_needToCheckFiltering(ctxt)) {
+                if (_needToCheckFiltering(ctxt) && _usesDefaultContents()) {
                     UnwrappedContainerSerializerHelper.serializeUnwrapped(this, value, g,
                             ctxt, () -> serializeContents(value, g, ctxt));
                 } else {
@@ -95,6 +95,27 @@ public class IterableSerializer
         g.writeStartArray(value);
         serializeContents(value, g, ctxt);
         g.writeEndArray();
+    }
+
+    /**
+     * A content override owns its output, including values it writes before or
+     * after delegating to super. Only the inherited implementation may claim
+     * the built-in empty-value fallback.
+     */
+    private boolean _usesDefaultContents() {
+        // Avoid reflection for the ordinary, built-in serializer.
+        if (getClass() == IterableSerializer.class) {
+            return true;
+        }
+        try {
+            return getClass().getMethod("serializeContents", Iterable.class,
+                    JsonGenerator.class, SerializationContext.class)
+                    .getDeclaringClass() == IterableSerializer.class;
+        } catch (NoSuchMethodException | SecurityException e) {
+            // If method ownership cannot be established, preserve virtual
+            // dispatch without adding output on behalf of a custom serializer.
+            return false;
+        }
     }
 
     @Override
