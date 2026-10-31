@@ -83,9 +83,10 @@ public class IterableSerializer
                 ctxt.isEnabled(SerializationFeature.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED))
                 || (_unwrapSingle == Boolean.TRUE)) {
             if (hasSingleElement(value)) {
-                if (_needToCheckFiltering(ctxt)) {
-                    UnwrappedContainerSerializerHelper.serializeUnwrapped(this, value, g,
-                            ctxt, () -> serializeContents(value, g, ctxt));
+                // A custom contents override owns its output, including any
+                // value it writes before delegating to the base implementation.
+                if ((getClass() == IterableSerializer.class) && _needToCheckFiltering(ctxt)) {
+                    serializeContents(value, g, ctxt, true);
                 } else {
                     serializeContents(value, g, ctxt);
                 }
@@ -102,8 +103,13 @@ public class IterableSerializer
             SerializationContext ctxt)
         throws JacksonException
     {
-        boolean emptyUnwrapped = UnwrappedContainerSerializerHelper.claimUnwrapped(
-                this, value, g, ctxt);
+        serializeContents(value, g, ctxt, false);
+    }
+
+    private void serializeContents(Iterable<?> value, JsonGenerator g,
+            SerializationContext ctxt, boolean emptyUnwrapped)
+        throws JacksonException
+    {
         final boolean needsFiltering = _needToCheckFiltering(ctxt);
         Iterator<?> it = value.iterator();
         if (it.hasNext()) {
@@ -147,9 +153,6 @@ public class IterableSerializer
                 }
             } while (it.hasNext());
         }
-        if (emptyUnwrapped) {
-            g.writeStartArray(value, 0);
-            g.writeEndArray();
-        }
+        UnwrappedContainerSerializerHelper.writeEmptyArrayIfNeeded(value, g, emptyUnwrapped);
     }
 }

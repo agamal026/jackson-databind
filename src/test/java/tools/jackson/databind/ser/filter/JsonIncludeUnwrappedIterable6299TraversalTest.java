@@ -281,7 +281,11 @@ class JsonIncludeUnwrappedIterable6299TraversalTest
     }
 
     @Test
-    void aSecondDirectContentsCallDoesNotInheritUnwrapping() { assertReentry(Mode.TWICE, "[]"); }
+    void directContentsCallsDoNotOwnAnArrayWrapper() {
+        // Contents overrides retain their pre-6299 responsibility for the value
+        // shape. Two calls that suppress every element must not invent a value.
+        assertReentry(Mode.TWICE, "");
+    }
 
     private void assertReentry(Mode mode, String expected) {
         Probe probe = new Probe(mode);

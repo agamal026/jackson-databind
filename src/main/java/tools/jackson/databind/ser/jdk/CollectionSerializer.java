@@ -113,48 +113,13 @@ public class CollectionSerializer
             if (((_unwrapSingle == null) &&
                     ctxt.isEnabled(SerializationFeature.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED))
                     || (_unwrapSingle == Boolean.TRUE)) {
-                if (UnwrappedContainerSerializerHelper.writeEmptyArrayIfSuppressed(value, g,
-                        _needToCheckFiltering(ctxt), () -> _isEmptySingleton(ctxt, value))) {
-                    return;
-                }
-                serializeContentsImpl(value, g, ctxt);
+                serializeContentsImpl(value, g, ctxt, _needToCheckFiltering(ctxt));
                 return;
             }
         }
         g.writeStartArray(value, len);
-        serializeContentsImpl(value, g, ctxt);
+        serializeContentsImpl(value, g, ctxt, false);
         g.writeEndArray();
-    }
-
-    private boolean _isEmptySingleton(SerializationContext ctxt, Collection<?> value) {
-        Iterator<?> it = value.iterator();
-        if (!it.hasNext()) {
-            return true;
-        }
-        // The fixed-serializer path obtains the element outside its catch block.
-        Object elem = (_elementSerializer == null) ? null : it.next();
-        try {
-            if (_elementSerializer == null) {
-                elem = it.next();
-            }
-            if (elem == null) {
-                return _suppressNulls;
-            }
-            ValueSerializer<Object> serializer = _elementSerializer;
-            if (serializer == null) {
-                Class<?> cc = elem.getClass();
-                serializer = _dynamicValueSerializers.serializerFor(cc);
-                if (serializer == null) {
-                    serializer = _elementType.hasGenericTypes()
-                            ? _findAndAddDynamic(ctxt, ctxt.constructSpecializedType(_elementType, cc))
-                            : _findAndAddDynamic(ctxt, cc);
-                }
-            }
-            return !_shouldSerializeElement(ctxt, elem, serializer);
-        } catch (Exception e) {
-            wrapAndThrow(ctxt, e, value, 0);
-            return false;
-        }
     }
 
     @Override
@@ -162,19 +127,20 @@ public class CollectionSerializer
             SerializationContext ctxt)
         throws JacksonException
     {
-        serializeContentsImpl(value, g, ctxt);
+        serializeContentsImpl(value, g, ctxt, false);
     }
 
     private void serializeContentsImpl(Collection<?> value, JsonGenerator g,
-            SerializationContext ctxt)
+            SerializationContext ctxt, boolean emptyUnwrapped)
         throws JacksonException
     {
         if (_elementSerializer != null) {
-            serializeContentsUsingImpl(value, g, ctxt, _elementSerializer);
+            serializeContentsUsingImpl(value, g, ctxt, _elementSerializer, emptyUnwrapped);
             return;
         }
         Iterator<?> it = value.iterator();
         if (!it.hasNext()) {
+            UnwrappedContainerSerializerHelper.writeEmptyArrayIfNeeded(value, g, emptyUnwrapped);
             return;
         }
         PropertySerializerMap serializers = _dynamicValueSerializers;
@@ -192,6 +158,7 @@ public class CollectionSerializer
                         ++i;
                         continue;
                     }
+                    emptyUnwrapped = false;
                     ctxt.defaultSerializeNullValue(g);
                 } else {
                     Class<?> cc = elem.getClass();
@@ -209,6 +176,7 @@ public class CollectionSerializer
                         ++i;
                         continue;
                     }
+                    emptyUnwrapped = false;
                     if (typeSer == null) {
                         serializer.serialize(elem, g, ctxt);
                     } else {
@@ -220,10 +188,11 @@ public class CollectionSerializer
         } catch (Exception e) {
             wrapAndThrow(ctxt, e, value, i);
         }
+        UnwrappedContainerSerializerHelper.writeEmptyArrayIfNeeded(value, g, emptyUnwrapped);
     }
 
     private void serializeContentsUsingImpl(Collection<?> value, JsonGenerator g,
-            SerializationContext ctxt, ValueSerializer<Object> ser)
+            SerializationContext ctxt, ValueSerializer<Object> ser, boolean emptyUnwrapped)
         throws JacksonException
     {
         Iterator<?> it = value.iterator();
@@ -242,6 +211,7 @@ public class CollectionSerializer
                             ++i;
                             continue;
                         }
+                        emptyUnwrapped = false;
                         ctxt.defaultSerializeNullValue(g);
                     } else {
                         // Check if this element should be suppressed (only in filtered mode)
@@ -249,6 +219,7 @@ public class CollectionSerializer
                             ++i;
                             continue;
                         }
+                        emptyUnwrapped = false;
                         if (typeSer == null) {
                             ser.serialize(elem, g, ctxt);
                         } else {
@@ -261,5 +232,6 @@ public class CollectionSerializer
                 }
             } while (it.hasNext());
         }
+        UnwrappedContainerSerializerHelper.writeEmptyArrayIfNeeded(value, g, emptyUnwrapped);
     }
 }

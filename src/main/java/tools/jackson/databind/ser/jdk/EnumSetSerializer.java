@@ -66,11 +66,11 @@ public class EnumSetSerializer
             if (((_unwrapSingle == null)
                     && ctxt.isEnabled(SerializationFeature.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED))
                     || (_unwrapSingle == Boolean.TRUE)) {
-                if (UnwrappedContainerSerializerHelper.writeEmptyArrayIfSuppressed(value, g,
-                        _needToCheckFiltering(ctxt), () -> _isEmptySingleton(ctxt, value, g))) {
-                    return;
+                if ((getClass() == EnumSetSerializer.class) && _needToCheckFiltering(ctxt)) {
+                    serializeContents(value, g, ctxt, true);
+                } else {
+                    serializeContents(value, g, ctxt);
                 }
-                serializeContents(value, g, ctxt);
                 return;
             }
         }
@@ -79,20 +79,16 @@ public class EnumSetSerializer
         g.writeEndArray();
     }
 
-    private boolean _isEmptySingleton(SerializationContext ctxt,
-            EnumSet<? extends Enum<?>> value, JsonGenerator g) {
-        g.assignCurrentValue(value);
-        Enum<?> elem = value.iterator().next();
-        ValueSerializer<Object> serializer = _elementSerializer;
-        if (serializer == null) {
-            serializer = _findAndAddDynamic(ctxt, elem.getDeclaringClass());
-        }
-        return !_shouldSerializeElement(ctxt, elem, serializer);
-    }
-
     @Override
     public void serializeContents(EnumSet<? extends Enum<?>> value, JsonGenerator g,
             SerializationContext ctxt)
+        throws JacksonException
+    {
+        serializeContents(value, g, ctxt, false);
+    }
+
+    private void serializeContents(EnumSet<? extends Enum<?>> value, JsonGenerator g,
+            SerializationContext ctxt, boolean emptyUnwrapped)
         throws JacksonException
     {
         final boolean needsFiltering = _needToCheckFiltering(ctxt);
@@ -110,7 +106,9 @@ public class EnumSetSerializer
             if (needsFiltering && !_shouldSerializeElement(ctxt, en, enumSer)) {
                 continue;
             }
+            emptyUnwrapped = false;
             enumSer.serialize(en, g, ctxt);
         }
+        UnwrappedContainerSerializerHelper.writeEmptyArrayIfNeeded(value, g, emptyUnwrapped);
     }
 }

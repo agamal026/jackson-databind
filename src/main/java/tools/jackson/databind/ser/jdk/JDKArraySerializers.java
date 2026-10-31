@@ -163,12 +163,11 @@ public class JDKArraySerializers
         {
             final int len = value.length;
             if ((len == 1) && _shouldUnwrapSingle(ctxt)) {
-                if (UnwrappedContainerSerializerHelper.writeEmptyArrayIfSuppressed(value, g,
-                        _needToCheckFiltering(ctxt),
-                        () -> !_shouldSerializeElement(ctxt, Boolean.valueOf(value[0])))) {
-                    return;
+                if ((getClass() == BooleanArraySerializer.class) && _needToCheckFiltering(ctxt)) {
+                    serializeContents(value, g, ctxt, true);
+                } else {
+                    serializeContents(value, g, ctxt);
                 }
-                serializeContents(value, g, ctxt);
                 return;
             }
             g.writeStartArray(value, len);
@@ -180,13 +179,22 @@ public class JDKArraySerializers
         public void serializeContents(boolean[] value, JsonGenerator g, SerializationContext ctxt)
             throws JacksonException
         {
+            serializeContents(value, g, ctxt, false);
+        }
+
+        private void serializeContents(boolean[] value, JsonGenerator g,
+                SerializationContext ctxt, boolean emptyUnwrapped)
+            throws JacksonException
+        {
             final boolean filtered = _needToCheckFiltering(ctxt);
             for (int i = 0, len = value.length; i < len; ++i) {
                 if (filtered && !_shouldSerializeElement(ctxt, Boolean.valueOf(value[i]))) {
                     continue;
                 }
+                emptyUnwrapped = false;
                 g.writeBoolean(value[i]);
             }
+            UnwrappedContainerSerializerHelper.writeEmptyArrayIfNeeded(value, g, emptyUnwrapped);
         }
 
         @Override
@@ -244,12 +252,11 @@ public class JDKArraySerializers
         {
             final int len = value.length;
             if ((len == 1) && _shouldUnwrapSingle(ctxt)) {
-                if (UnwrappedContainerSerializerHelper.writeEmptyArrayIfSuppressed(value, g,
-                        _needToCheckFiltering(ctxt),
-                        () -> !_shouldSerializeElement(ctxt, Short.valueOf(value[0])))) {
-                    return;
+                if ((getClass() == ShortArraySerializer.class) && _needToCheckFiltering(ctxt)) {
+                    serializeContents(value, g, ctxt, true);
+                } else {
+                    serializeContents(value, g, ctxt);
                 }
-                serializeContents(value, g, ctxt);
                 return;
             }
             g.writeStartArray(value, len);
@@ -261,13 +268,22 @@ public class JDKArraySerializers
         public void serializeContents(short[] value, JsonGenerator g, SerializationContext ctxt)
             throws JacksonException
         {
+            serializeContents(value, g, ctxt, false);
+        }
+
+        private void serializeContents(short[] value, JsonGenerator g,
+                SerializationContext ctxt, boolean emptyUnwrapped)
+            throws JacksonException
+        {
             final boolean filtered = _needToCheckFiltering(ctxt);
             for (int i = 0, len = value.length; i < len; ++i) {
                 if (filtered && !_shouldSerializeElement(ctxt, Short.valueOf(value[i]))) {
                     continue;
                 }
+                emptyUnwrapped = false;
                 g.writeNumber((int)value[i]);
             }
+            UnwrappedContainerSerializerHelper.writeEmptyArrayIfNeeded(value, g, emptyUnwrapped);
         }
 
         @Override
@@ -401,12 +417,11 @@ public class JDKArraySerializers
         {
             final int len = value.length;
             if ((len == 1) && _shouldUnwrapSingle(ctxt)) {
-                if (UnwrappedContainerSerializerHelper.writeEmptyArrayIfSuppressed(value, g,
-                        _needToCheckFiltering(ctxt),
-                        () -> !_shouldSerializeElement(ctxt, Integer.valueOf(value[0])))) {
-                    return;
+                if ((getClass() == IntArraySerializer.class) && _needToCheckFiltering(ctxt)) {
+                    serializeContents(value, g, ctxt, true);
+                } else {
+                    serializeContents(value, g, ctxt);
                 }
-                serializeContents(value, g, ctxt);
                 return;
             }
             // Check if filtering is needed
@@ -424,13 +439,22 @@ public class JDKArraySerializers
         public void serializeContents(int[] value, JsonGenerator g, SerializationContext ctxt)
             throws JacksonException
         {
+            serializeContents(value, g, ctxt, false);
+        }
+
+        private void serializeContents(int[] value, JsonGenerator g,
+                SerializationContext ctxt, boolean emptyUnwrapped)
+            throws JacksonException
+        {
             final boolean filtered = _needToCheckFiltering(ctxt);
             for (int i = 0, len = value.length; i < len; ++i) {
                 if (filtered && !_shouldSerializeElement(ctxt, Integer.valueOf(value[i]))) {
                     continue;
                 }
+                emptyUnwrapped = false;
                 g.writeNumber(value[i]);
             }
+            UnwrappedContainerSerializerHelper.writeEmptyArrayIfNeeded(value, g, emptyUnwrapped);
         }
 
         @Override
@@ -488,12 +512,11 @@ public class JDKArraySerializers
         {
             final int len = value.length;
             if ((len == 1) && _shouldUnwrapSingle(ctxt)) {
-                if (UnwrappedContainerSerializerHelper.writeEmptyArrayIfSuppressed(value, g,
-                        _needToCheckFiltering(ctxt),
-                        () -> !_shouldSerializeElement(ctxt, Long.valueOf(value[0])))) {
-                    return;
+                if ((getClass() == LongArraySerializer.class) && _needToCheckFiltering(ctxt)) {
+                    serializeContents(value, g, ctxt, true);
+                } else {
+                    serializeContents(value, g, ctxt);
                 }
-                serializeContents(value, g, ctxt);
                 return;
             }
             // Check if filtering is needed
@@ -511,13 +534,22 @@ public class JDKArraySerializers
         public void serializeContents(long[] value, JsonGenerator g, SerializationContext ctxt)
             throws JacksonException
         {
+            serializeContents(value, g, ctxt, false);
+        }
+
+        private void serializeContents(long[] value, JsonGenerator g,
+                SerializationContext ctxt, boolean emptyUnwrapped)
+            throws JacksonException
+        {
             final boolean filtered = _needToCheckFiltering(ctxt);
             for (int i = 0, len = value.length; i < len; ++i) {
                 if (filtered && !_shouldSerializeElement(ctxt, Long.valueOf(value[i]))) {
                     continue;
                 }
+                emptyUnwrapped = false;
                 g.writeNumber(value[i]);
             }
+            UnwrappedContainerSerializerHelper.writeEmptyArrayIfNeeded(value, g, emptyUnwrapped);
         }
 
         @Override
@@ -593,12 +625,11 @@ public class JDKArraySerializers
         {
             final int len = value.length;
             if ((len == 1) && _shouldUnwrapSingle(ctxt)) {
-                if (UnwrappedContainerSerializerHelper.writeEmptyArrayIfSuppressed(value, g,
-                        _needToCheckFiltering(ctxt),
-                        () -> !_shouldSerializeElement(ctxt, Float.valueOf(value[0])))) {
-                    return;
+                if ((getClass() == FloatArraySerializer.class) && _needToCheckFiltering(ctxt)) {
+                    serializeContents(value, g, ctxt, true);
+                } else {
+                    serializeContents(value, g, ctxt);
                 }
-                serializeContents(value, g, ctxt);
                 return;
             }
             g.writeStartArray(value, len);
@@ -610,13 +641,22 @@ public class JDKArraySerializers
         public void serializeContents(float[] value, JsonGenerator g, SerializationContext ctxt)
             throws JacksonException
         {
+            serializeContents(value, g, ctxt, false);
+        }
+
+        private void serializeContents(float[] value, JsonGenerator g,
+                SerializationContext ctxt, boolean emptyUnwrapped)
+            throws JacksonException
+        {
             final boolean filtered = _needToCheckFiltering(ctxt);
             for (int i = 0, len = value.length; i < len; ++i) {
                 if (filtered && !_shouldSerializeElement(ctxt, Float.valueOf(value[i]))) {
                     continue;
                 }
+                emptyUnwrapped = false;
                 g.writeNumber(value[i]);
             }
+            UnwrappedContainerSerializerHelper.writeEmptyArrayIfNeeded(value, g, emptyUnwrapped);
         }
 
         @Override
@@ -701,12 +741,11 @@ public class JDKArraySerializers
         {
             final int len = value.length;
             if ((len == 1) && _shouldUnwrapSingle(ctxt)) {
-                if (UnwrappedContainerSerializerHelper.writeEmptyArrayIfSuppressed(value, g,
-                        _needToCheckFiltering(ctxt),
-                        () -> !_shouldSerializeElement(ctxt, Double.valueOf(value[0])))) {
-                    return;
+                if ((getClass() == DoubleArraySerializer.class) && _needToCheckFiltering(ctxt)) {
+                    serializeContents(value, g, ctxt, true);
+                } else {
+                    serializeContents(value, g, ctxt);
                 }
-                serializeContents(value, g, ctxt);
                 return;
             }
             // Check if filtering is needed
@@ -723,13 +762,21 @@ public class JDKArraySerializers
         @Override
         public void serializeContents(double[] value, JsonGenerator g, SerializationContext ctxt) throws JacksonException
         {
+            serializeContents(value, g, ctxt, false);
+        }
+
+        private void serializeContents(double[] value, JsonGenerator g,
+                SerializationContext ctxt, boolean emptyUnwrapped) throws JacksonException
+        {
             final boolean filtered = _needToCheckFiltering(ctxt);
             for (int i = 0, len = value.length; i < len; ++i) {
                 if (filtered && !_shouldSerializeElement(ctxt, Double.valueOf(value[i]))) {
                     continue;
                 }
+                emptyUnwrapped = false;
                 g.writeNumber(value[i]);
             }
+            UnwrappedContainerSerializerHelper.writeEmptyArrayIfNeeded(value, g, emptyUnwrapped);
         }
 
         @Override

@@ -208,12 +208,11 @@ public class StringArraySerializer
             if (((_unwrapSingle == null) &&
                     ctxt.isEnabled(SerializationFeature.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED))
                     || (_unwrapSingle == Boolean.TRUE)) {
-                if (UnwrappedContainerSerializerHelper.writeEmptyArrayIfSuppressed(value, g,
-                        _needToCheckFiltering(ctxt), () -> (value[0] == null) ? _suppressNulls
-                                : !_shouldSerializeElement(ctxt, value[0], _elementSerializer))) {
-                    return;
+                if ((getClass() == StringArraySerializer.class) && _needToCheckFiltering(ctxt)) {
+                    serializeContents(value, g, ctxt, true);
+                } else {
+                    serializeContents(value, g, ctxt);
                 }
-                serializeContents(value, g, ctxt);
                 return;
             }
         }
@@ -226,12 +225,20 @@ public class StringArraySerializer
     public void serializeContents(String[] value, JsonGenerator g, SerializationContext ctxt)
         throws JacksonException
     {
+        serializeContents(value, g, ctxt, false);
+    }
+
+    private void serializeContents(String[] value, JsonGenerator g,
+            SerializationContext ctxt, boolean emptyUnwrapped)
+        throws JacksonException
+    {
         final int len = value.length;
         if (len == 0) {
+            UnwrappedContainerSerializerHelper.writeEmptyArrayIfNeeded(value, g, emptyUnwrapped);
             return;
         }
         if (_elementSerializer != null) {
-            serializeContentsSlow(value, g, ctxt, _elementSerializer);
+            serializeContentsSlow(value, g, ctxt, _elementSerializer, emptyUnwrapped);
             return;
         }
         final boolean filtered = _needToCheckFiltering(ctxt);
@@ -241,19 +248,22 @@ public class StringArraySerializer
                 if (filtered && _suppressNulls) {
                     continue;
                 }
+                emptyUnwrapped = false;
                 g.writeNull();
             } else {
                 // Check if this element should be suppressed (only in filtered mode)
                 if (filtered && !_shouldSerializeElement(ctxt, str, null)) {
                     continue;
                 }
+                emptyUnwrapped = false;
                 g.writeString(str);
             }
         }
+        UnwrappedContainerSerializerHelper.writeEmptyArrayIfNeeded(value, g, emptyUnwrapped);
     }
 
     private void serializeContentsSlow(String[] value, JsonGenerator g,
-            SerializationContext ctxt, ValueSerializer<Object> ser)
+            SerializationContext ctxt, ValueSerializer<Object> ser, boolean emptyUnwrapped)
         throws JacksonException
     {
         final boolean filtered = _needToCheckFiltering(ctxt);
@@ -263,15 +273,18 @@ public class StringArraySerializer
                 if (filtered && _suppressNulls) {
                     continue;
                 }
+                emptyUnwrapped = false;
                 ctxt.defaultSerializeNullValue(g);
             } else {
                 // Check if this element should be suppressed (only in filtered mode)
                 if (filtered && !_shouldSerializeElement(ctxt, str, ser)) {
                     continue;
                 }
+                emptyUnwrapped = false;
                 ser.serialize(str, g, ctxt);
             }
         }
+        UnwrappedContainerSerializerHelper.writeEmptyArrayIfNeeded(value, g, emptyUnwrapped);
     }
 
     /*
