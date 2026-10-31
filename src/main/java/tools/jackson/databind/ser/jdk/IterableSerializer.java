@@ -83,7 +83,10 @@ public class IterableSerializer
                 ctxt.isEnabled(SerializationFeature.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED))
                 || (_unwrapSingle == Boolean.TRUE)) {
             if (hasSingleElement(value)) {
-                if (_needToCheckFiltering(ctxt)) {
+                // A custom contents override owns its output. It may already
+                // have written a value (possibly filtered by the generator)
+                // before delegating, so do not synthesize a value on its behalf.
+                if (_needToCheckFiltering(ctxt) && (getClass() == IterableSerializer.class)) {
                     UnwrappedContainerSerializerHelper.serializeUnwrapped(this, value, g,
                             ctxt, () -> serializeContents(value, g, ctxt));
                 } else {
